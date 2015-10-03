@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AllLifePricing" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/AllLifePricing" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAllLifePrincing_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnPremium_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnPremium" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnPremium_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnPremiumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnRisk_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnRisk" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnRisk_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnRiskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnCover_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnCover" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnCover_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnCoverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnEM_Affected_Premium_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnEM_Affected_Premium" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnEM_Affected_Premium_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnEM_Affected_PremiumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnEM_Affected_Risk_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnEM_Affected_Risk" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnEM_Affected_Risk_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnEM_Affected_RiskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnEM_Affected_Cover_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnEM_Affected_Cover" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnEM_Affected_Cover_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnEM_Affected_CoverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnRiskBand_InputMessage">
+    <wsdl:part name="parameters" element="tns:returnRiskBand" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_returnRiskBand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:returnRiskBandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_QualifyLife_InputMessage">
+    <wsdl:part name="parameters" element="tns:QualifyLife" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_QualifyLife_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QualifyLifeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_QualifyDisability_InputMessage">
+    <wsdl:part name="parameters" element="tns:QualifyDisability" />
+  </wsdl:message>
+  <wsdl:message name="IAllLifePrincing_QualifyDisability_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QualifyDisabilityResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAllLifePrincing">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/GetData" message="tns:IAllLifePrincing_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/GetDataResponse" message="tns:IAllLifePrincing_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/GetDataUsingDataContract" message="tns:IAllLifePrincing_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/GetDataUsingDataContractResponse" message="tns:IAllLifePrincing_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnPremium">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnPremium" message="tns:IAllLifePrincing_returnPremium_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnPremiumResponse" message="tns:IAllLifePrincing_returnPremium_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnRisk">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnRisk" message="tns:IAllLifePrincing_returnRisk_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnRiskResponse" message="tns:IAllLifePrincing_returnRisk_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnCover">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnCover" message="tns:IAllLifePrincing_returnCover_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnCoverResponse" message="tns:IAllLifePrincing_returnCover_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnEM_Affected_Premium">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnEM_Affected_Premium" message="tns:IAllLifePrincing_returnEM_Affected_Premium_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnEM_Affected_PremiumResponse" message="tns:IAllLifePrincing_returnEM_Affected_Premium_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnEM_Affected_Risk">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnEM_Affected_Risk" message="tns:IAllLifePrincing_returnEM_Affected_Risk_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnEM_Affected_RiskResponse" message="tns:IAllLifePrincing_returnEM_Affected_Risk_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnEM_Affected_Cover">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnEM_Affected_Cover" message="tns:IAllLifePrincing_returnEM_Affected_Cover_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnEM_Affected_CoverResponse" message="tns:IAllLifePrincing_returnEM_Affected_Cover_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="returnRiskBand">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/returnRiskBand" message="tns:IAllLifePrincing_returnRiskBand_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/returnRiskBandResponse" message="tns:IAllLifePrincing_returnRiskBand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QualifyLife">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/QualifyLife" message="tns:IAllLifePrincing_QualifyLife_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/QualifyLifeResponse" message="tns:IAllLifePrincing_QualifyLife_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QualifyDisability">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAllLifePrincing/QualifyDisability" message="tns:IAllLifePrincing_QualifyDisability_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAllLifePrincing/QualifyDisabilityResponse" message="tns:IAllLifePrincing_QualifyDisability_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAllLifePrincing" type="tns:IAllLifePrincing">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnPremium">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnPremium" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnRisk">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnRisk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnCover">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnCover" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnEM_Affected_Premium">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnEM_Affected_Premium" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnEM_Affected_Risk">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnEM_Affected_Risk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnEM_Affected_Cover">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnEM_Affected_Cover" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnRiskBand">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/returnRiskBand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QualifyLife">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/QualifyLife" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QualifyDisability">
+      <soap:operation soapAction="http://tempuri.org/IAllLifePrincing/QualifyDisability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AllLifePricing">
+    <wsdl:port name="BasicHttpBinding_IAllLifePrincing" binding="tns:BasicHttpBinding_IAllLifePrincing">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

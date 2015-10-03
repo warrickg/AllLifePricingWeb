@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="27cdadb3-10b1-4d8a-a330-b263c9fd2da5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="998f38ed-5ad5-499f-88f6-d4a8a30e09c1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="74014dac-9d79-47ed-9189-ddbcc6251ff2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f5de3012-9123-4ec2-b868-ee5239273fe5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/mex" />
+    <MetadataFile FileName="AllLifePricing.xsd" MetadataType="Schema" ID="07121eda-2897-4033-826e-9908fc07e2b5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/mex" />
+    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="e5cab41d-1617-4478-a6f6-0262a72f1ecc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AllLifePricing/Service1/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f61b5ba9-bd81-405f-8ff1-2a79419eefaa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AllLifeGeneric.disco" MetadataType="Disco" ID="15da401d-72e2-4b96-9129-8a6a3acddcb3" SourceId="1" SourceUrl="http://win-34jjvspdjhm/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc?disco" />
+    <MetadataFile FileName="AllLifeGeneric.xsd" MetadataType="Schema" ID="6bc87aad-3cc7-4883-a387-6e77604c34ed" SourceId="1" SourceUrl="http://win-34jjvspdjhm/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc?xsd=xsd2" />
+    <MetadataFile FileName="AllLifeGeneric1.xsd" MetadataType="Schema" ID="11d8103a-e368-4daf-80bd-c1239b570915" SourceId="1" SourceUrl="http://win-34jjvspdjhm/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc?xsd=xsd0" />
+    <MetadataFile FileName="AllLifeGeneric.wsdl" MetadataType="Wsdl" ID="cf71e40c-8253-4eee-b2c2-902c091914c7" SourceId="1" SourceUrl="http://win-34jjvspdjhm/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc?wsdl" />
+    <MetadataFile FileName="AllLifeGeneric2.xsd" MetadataType="Schema" ID="e16b9d19-9a81-4333-901c-fafca20578d9" SourceId="1" SourceUrl="http://win-34jjvspdjhm/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc?xsd=xsd3" />
+    <MetadataFile FileName="AllLifeGeneric3.xsd" MetadataType="Schema" ID="9769d339-6193-4fdc-af5b-d979d6a1ab9d" SourceId="1" SourceUrl="http://win-34jjvspdjhm/AllLifeGeneric/AllLifeGeneric.AllLifeGeneric.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

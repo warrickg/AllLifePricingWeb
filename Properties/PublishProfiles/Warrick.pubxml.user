@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\inetpub\wwwroot\AllLifePricingWeb</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="About.aspx">
+      <publishTime>01/11/2015 20:59:45</publishTime>
+    </File>
+    <File Include="Admin/SubscriberAdmin.aspx">
+      <publishTime>07/13/2015 13:17:29</publishTime>
+    </File>
+    <File Include="Admin/SubscriberDetails.aspx">
+      <publishTime>01/22/2015 10:32:55</publishTime>
+    </File>
+    <File Include="Admin/UserAdmin.aspx">
+      <publishTime>08/05/2015 13:23:04</publishTime>
+    </File>
+    <File Include="Admin/UserChangeOwnDetails.aspx">
+      <publishTime>07/13/2015 12:49:38</publishTime>
+    </File>
+    <File Include="Admin/UserDetails.aspx">
+      <publishTime>07/28/2015 10:09:57</publishTime>
+    </File>
+    <File Include="Admin/UserDetails_ChangePwd.aspx">
+      <publishTime>07/13/2015 12:20:55</publishTime>
+    </File>
+    <File Include="all_life_logo.png">
+      <publishTime>06/20/2015 10:37:47</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/en-US.tdf">
+      <publishTime>02/25/2015 00:06:40</publishTime>
+    </File>
+    <File Include="bin/AllLifePricingWeb.dll">
+      <publishTime>10/01/2015 15:24:19</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/11/2015 21:00:01</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>10/01/2015 15:24:27</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>10/01/2015 15:24:27</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
+      <publishTime>01/11/2015 21:00:03</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.jQuery.dll">
+      <publishTime>01/11/2015 21:00:03</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/11/2015 21:00:09</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>01/11/2015 21:00:09</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>01/11/2015 21:00:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>01/11/2015 21:00:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>01/11/2015 21:00:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>01/11/2015 21:00:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>01/11/2015 21:00:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>01/11/2015 21:00:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/11/2015 21:00:01</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>01/11/2015 21:00:16</publishTime>
+    </File>
+    <File Include="bin/Report.dll">
+      <publishTime>09/21/2015 20:25:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/11/2015 21:00:03</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>01/11/2015 21:00:14</publishTime>
+    </File>
+    <File Include="bin/Telerik.Reporting.dll">
+      <publishTime>03/24/2015 15:52:26</publishTime>
+    </File>
+    <File Include="bin/Telerik.ReportViewer.WebForms.dll">
+      <publishTime>03/24/2015 15:52:52</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.dll">
+      <publishTime>07/23/2014 09:15:04</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/11/2015 21:00:00</publishTime>
+    </File>
+    <File Include="Bundle.config">
+      <publishTime>01/11/2015 20:59:45</publishTime>
+    </File>
+    <File Include="Contact.aspx">
+      <publishTime>01/11/2015 20:59:45</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>06/10/2015 10:47:12</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/11/2015 20:59:59</publishTime>
+    </File>
+    <File Include="Content/Diabetes-Leaflet-GenericVers2.pdf">
+      <publishTime>07/16/2015 12:40:00</publishTime>
+    </File>
+    <File Include="Content/green_ok.png">
+      <publishTime>10/30/2012 08:29:11</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/21/2015 21:00:42</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css">
+      <publishTime>06/02/2015 10:37:42</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css.map">
+      <publishTime>06/02/2015 10:37:42</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css">
+      <publishTime>06/02/2015 10:37:42</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>06/02/2015 10:37:42</publishTime>
+    </File>
+    <File Include="css/bootstrap.css.map">
+      <publishTime>06/02/2015 10:37:42</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>06/02/2015 10:37:42</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>01/11/2015 20:59:45</publishTime>
+    </File>
+    <File Include="EmailLogin.png">
+      <publishTime>07/01/2015 10:55:35</publishTime>
+    </File>
+    <File Include="EmailLogin2.jpg">
+      <publishTime>07/01/2015 11:28:03</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/11/2015 20:59:45</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>06/02/2015 10:41:07</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>06/02/2015 10:41:08</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>06/02/2015 10:41:09</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>06/02/2015 10:41:09</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>06/02/2015 10:41:09</publishTime>
+    </File>
+    <File Include="js/bootstrap.js">
+      <publishTime>06/02/2015 10:40:41</publishTime>
+    </File>
+    <File Include="js/bootstrap.min.js">
+      <publishTime>06/02/2015 10:40:41</publishTime>
+    </File>
+    <File Include="js/npm.js">
+      <publishTime>06/02/2015 10:40:41</publishTime>
+    </File>
+    <File Include="KeepSessionAlive.ashx">
+      <publishTime>08/26/2015 14:40:14</publishTime>
+    </File>
+    <File Include="Login.aspx">
+      <publishTime>07/01/2015 13:46:43</publishTime>
+    </File>
+    <File Include="Login.Master">
+      <publishTime>07/13/2015 13:42:25</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/11/2015 21:00:16</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>10/01/2015 15:24:20</publishTime>
+    </File>
+    <File Include="Properties/DataSources/System.Data.DataSet.datasource">
+      <publishTime>01/15/2015 20:22:32</publishTime>
+    </File>
+    <File Include="Properties/DataSources/System.Data.DataTable.datasource">
+      <publishTime>01/12/2015 11:27:18</publishTime>
+    </File>
+    <File Include="Quote.aspx">
+      <publishTime>10/01/2015 14:56:47</publishTime>
+    </File>
+    <File Include="QuoteEmailQuick.aspx">
+      <publishTime>07/13/2015 13:00:42</publishTime>
+    </File>
+    <File Include="QuoteGenerateLetter.aspx">
+      <publishTime>08/05/2015 13:18:21</publishTime>
+    </File>
+    <File Include="QuoteLoad.aspx">
+      <publishTime>07/17/2015 10:19:20</publishTime>
+    </File>
+    <File Include="QuoteSetEmailDetails.aspx">
+      <publishTime>07/01/2015 11:29:24</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>01/11/2015 20:59:59</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/11/2015 20:59:59</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>01/11/2015 20:59:52</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>01/11/2015 20:59:52</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>01/11/2015 20:59:52</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>01/11/2015 20:59:59</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>01/11/2015 20:59:59</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>01/11/2015 20:59:59</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/DetailsView.js">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Focus.js">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/GridView.js">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Menu.js">
+      <publishTime>01/11/2015 21:00:05</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MenuStandards.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjax.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxApplicationServices.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxComponentModel.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxCore.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxGlobalization.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxHistory.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxNetwork.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxSerialization.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxTimer.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebServices.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/SmartNav.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/TreeView.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebForms.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebParts.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebUIValidation.js">
+      <publishTime>01/11/2015 21:00:04</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>06/02/2015 10:40:41</publishTime>
+    </File>
+    <File Include="Service References/AllLifeGeneric/AllLifePricingWeb.AllLifeGeneric.CompositeType.datasource">
+      <publishTime>06/04/2015 11:44:00</publishTime>
+    </File>
+    <File Include="Service References/AllLifeGeneric/AllLifePricingWeb.AllLifeGeneric.IDValidationResult.datasource">
+      <publishTime>06/04/2015 11:44:00</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.CompositeType.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.GetDataResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.GetDataUsingDataContractResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.Get_UserMenuResponse.datasource">
+      <publishTime>01/22/2015 10:56:55</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.Get_UsersResponse.datasource">
+      <publishTime>01/22/2015 10:56:55</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.PricingUser.datasource">
+      <publishTime>01/22/2015 10:56:55</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.QualifyDisabilityResponse.datasource">
+      <publishTime>07/31/2015 13:10:48</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.QualifyLifeResponse.datasource">
+      <publishTime>07/31/2015 13:10:48</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnCoverResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnEM_Affected_CoverResponse.datasource">
+      <publishTime>07/31/2015 13:10:48</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnEM_Affected_PremiumResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnEM_Affected_RiskResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnPremiumResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnRiskBandResponse.datasource">
+      <publishTime>07/31/2015 13:10:48</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.returnRiskResponse.datasource">
+      <publishTime>07/31/2015 13:10:47</publishTime>
+    </File>
+    <File Include="Service References/WS/AllLifePricingWeb.WS.UserloginResponse.datasource">
+      <publishTime>01/22/2015 10:56:55</publishTime>
+    </File>
+    <File Include="Site.Master">
+      <publishTime>07/13/2015 13:42:28</publishTime>
+    </File>
+    <File Include="Site.Mobile.Master">
+      <publishTime>01/11/2015 21:00:06</publishTime>
+    </File>
+    <File Include="Test.aspx">
+      <publishTime>01/13/2015 21:02:32</publishTime>
+    </File>
+    <File Include="Testing.aspx">
+      <publishTime>09/30/2015 08:28:51</publishTime>
+    </File>
+    <File Include="UserGuide.aspx">
+      <publishTime>07/03/2015 15:30:38</publishTime>
+    </File>
+    <File Include="ViewSwitcher.ascx">
+      <publishTime>01/11/2015 21:00:06</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>07/14/2015 15:48:54</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
