@@ -271,7 +271,7 @@ namespace AllLifePricingWeb
                 Telerik.Reporting.Report report = new Telerik.Reporting.Report();
 
                 //Telerik.Reporting.Report report = new Telerik.Reporting.Report();
-                if ((dt.Rows[0][36].ToString() == "ok") && (dt.Rows[0][37].ToString() == "ok"))
+                if (((dt.Rows[0][36].ToString() == "ok") && (dt.Rows[0][37].ToString() == "ok")) || ((dt.Rows[0][72].ToString() != "FDB") && (dt.Rows[0][73].ToString() != "FDB")))
                 {
                     //Both quoteLife and QuoteDisability were selected
                     if ((dt.Rows[0][42].ToString() == "1") && (dt.Rows[0][43].ToString() == "1"))
@@ -295,15 +295,17 @@ namespace AllLifePricingWeb
                     }
 
                 }
-
-                if (dt.Rows[0][36].ToString() != "ok")
+                else
                 {
-                    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
-                }
+                    if (dt.Rows[0][36].ToString() != "ok")
+                    {
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                    }
 
-                if (dt.Rows[0][37].ToString() != "ok")
-                {
-                    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    if (dt.Rows[0][37].ToString() != "ok")
+                    {
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    }
                 }
 
                 report.DocumentName = strMagnumID;
@@ -362,6 +364,7 @@ namespace AllLifePricingWeb
             string strQuoteOptionAuditTrailIDO5 = "0";
             string strMessageMain = string.Empty;
             string strMessage = string.Empty;
+            int intcheckCount = 0;
 
             try
             {
@@ -372,31 +375,71 @@ namespace AllLifePricingWeb
                 {
                     if ((item.FindControl("CheckBoxSelect") as System.Web.UI.WebControls.CheckBox).Checked == true)
                     {
-                        switch (item.Cells[3].Text.Trim())
-                        {
-                            case "1":
-                                if (strQuoteOptionAuditTrailIDO1 == "0")
-                                    strQuoteOptionAuditTrailIDO1 = item.Cells[2].Text;
+                        intcheckCount += 1;
+                        #region "Old"
+                        //switch (item.Cells[3].Text.Trim())
+                        //{
+                        //    case "1":
+                        //        if (strQuoteOptionAuditTrailIDO1 == "0")
+                        //            strQuoteOptionAuditTrailIDO1 = item.Cells[2].Text;
+                        //        else
+                        //        {
+                        //            blnContinue = false;
+                        //        }
+                        //        break;
+                        //    case "2":
+                        //        if (strQuoteOptionAuditTrailIDO2 == "0")
+                        //            strQuoteOptionAuditTrailIDO2 = item.Cells[2].Text;
+                        //        else
+                        //        {
+                        //            blnContinue = false;
+                        //        }
+                        //        break;
+                        //    case "3":
+                        //        if (strQuoteOptionAuditTrailIDO3 == "0")
+                        //            strQuoteOptionAuditTrailIDO3 = item.Cells[2].Text;
+                        //        else
+                        //        {
+                        //            blnContinue = false;
+                        //        }
+                        //        break;
+                        //    case "4":
+                        //        if (strQuoteOptionAuditTrailIDO4 == "0")
+                        //            strQuoteOptionAuditTrailIDO4 = item.Cells[2].Text;
+                        //        else
+                        //        {
+                        //            blnContinue = false;
+                        //        }
+                        //        break;
+                        //    case "5":
+                        //        if (strQuoteOptionAuditTrailIDO5 == "0")
+                        //            strQuoteOptionAuditTrailIDO5 = item.Cells[2].Text;
+                        //        else
+                        //        {
+                        //            blnContinue = false;
+                        //        }
+                        //        break;
+                        //}
+                        #endregion
 
+                        switch (intcheckCount)
+                        {
+                            case 1:
+                                strQuoteOptionAuditTrailIDO1 = item.Cells[2].Text;
                                 break;
-                            case "2":
-                                if (strQuoteOptionAuditTrailIDO2 == "0")
-                                    strQuoteOptionAuditTrailIDO2 = item.Cells[2].Text;
+                            case 2:
+                                strQuoteOptionAuditTrailIDO2 = item.Cells[2].Text;
                                 break;
-                            case "3":
-                                if (strQuoteOptionAuditTrailIDO3 == "0")
-                                    strQuoteOptionAuditTrailIDO3 = item.Cells[2].Text;
+                            case 3:
+                                strQuoteOptionAuditTrailIDO3 = item.Cells[2].Text;
                                 break;
-                            case "4":
-                                if (strQuoteOptionAuditTrailIDO4 == "0")
-                                    strQuoteOptionAuditTrailIDO4 = item.Cells[2].Text;
+                            case 4:
+                                strQuoteOptionAuditTrailIDO4 = item.Cells[2].Text;
                                 break;
-                            case "5":
-                                if (strQuoteOptionAuditTrailIDO5 == "0")
-                                    strQuoteOptionAuditTrailIDO5 = item.Cells[2].Text;
+                            case 5:
+                                strQuoteOptionAuditTrailIDO5 = item.Cells[2].Text;
                                 break;
                         }
-
                     }
                 }
                 #endregion
@@ -449,21 +492,58 @@ namespace AllLifePricingWeb
 
                 // Creating a new report
                 Telerik.Reporting.Report report = new Telerik.Reporting.Report();
+                
+                //if ((dt.Rows[0][36].ToString() == "ok") && (dt.Rows[0][37].ToString() == "ok"))
+                //{
+                //    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                //}
+
+                //if (dt.Rows[0][36].ToString() != "ok")
+                //{
+                //    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                //}
+
+                //if (dt.Rows[0][37].ToString() != "ok")
+                //{
+                //    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                //}
 
                 //Telerik.Reporting.Report report = new Telerik.Reporting.Report();
-                if ((dt.Rows[0][36].ToString() == "ok") && (dt.Rows[0][37].ToString() == "ok"))
+                if (((dt.Rows[0][36].ToString() == "ok") && (dt.Rows[0][37].ToString() == "ok")) || ((dt.Rows[0][72].ToString() != "FDB") && (dt.Rows[0][73].ToString() != "FDB")))
                 {
-                    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
-                }
+                    //Both quoteLife and QuoteDisability were selected
+                    if ((dt.Rows[0][42].ToString() == "1") && (dt.Rows[0][43].ToString() == "1"))
+                    {
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                    }
 
-                if (dt.Rows[0][36].ToString() != "ok")
-                {
-                    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
-                }
+                    //if only QuoteLife was selected
+                    if ((dt.Rows[0][42].ToString() == "1") && (dt.Rows[0][43].ToString() == "0"))
+                    {
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    }
 
-                if (dt.Rows[0][37].ToString() != "ok")
+                    //if only QuoteDisability was selected
+                    if ((dt.Rows[0][42].ToString() == "0") && (dt.Rows[0][43].ToString() == "1"))
+                    {
+                        //report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisOnly"));
+                        //report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                        //report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    }
+
+                }
+                else
                 {
-                    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    if (dt.Rows[0][36].ToString() != "ok")
+                    {
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                    }
+
+                    if (dt.Rows[0][37].ToString() != "ok")
+                    {
+                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    }
                 }
 
                 DateTime now = DateTime.Now;

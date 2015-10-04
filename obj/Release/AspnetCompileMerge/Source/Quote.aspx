@@ -24,7 +24,7 @@
                             //alert("test");
                             console.log("Test - KeepSessionAlive")
                             //url = "/KeepSessionAlive.ashx?";
-                            url = "http://192.168.100.30/Test_Site_AllLifePricingTest/KeepSessionAlive.ashx";
+                            url = "http://192.168.100.30/Site_AllLifePricingTest/KeepSessionAlive.ashx";
                             //url = "http://localhost/AllLifePricingWeb/KeepSessionAlive.ashx";
                             var xmlHttp = new XMLHttpRequest();
                             xmlHttp.open("GET", url, true);
@@ -361,7 +361,169 @@
 
                             //HbA1C
                             //***************************************************
-                            var valHbA1C = document.getElementById("<%=lblValHbA1c.ClientID%>");
+                            var element = document.getElementById('<%=RadioButtonHbA1c4.ClientID%>');
+                            if (element != null) // && element.value == '')
+                            {
+                                //console.log("RadioButtonHbA1c4 is visable")
+                                var valHbA1C = document.getElementById("<%=lblValHbA1c.ClientID%>");
+                                if ((document.getElementById("<%=RadioButtonHbA1c3.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c4.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c6.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c7.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c8.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c9.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c10.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c11.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c12.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c15.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == false)) {
+                                    CheckResult = CheckResult + "HbA1C missing,";
+                                    valHbA1C.innerText = "*";
+                                }
+                                else {
+                                    valHbA1C.innerText = "";
+
+                                    if (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) {
+                                        document.getElementById('<%=RadioButtonExPYes.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExPNo.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonExFollowedVW.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExFollowedok.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExFollowedpoor.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonEatPYes.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatPNo.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonEatFollowedVW.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatFollowedOk.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatFollowedPoor.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonMedicalAidNone.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidNotSure.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidComp.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidHos.ClientID %>').removeAttribute('disabled');
+                                    }
+                                    else {                                       
+
+                                        if (document.getElementById('<%=RadioButtonHbA1c4.ClientID%>').checked == true) {
+                                            document.getElementById('<%=RadioButtonExPYes.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonExPNo.ClientID %>').removeAttribute('disabled');
+
+                                            document.getElementById('<%=RadioButtonExFollowedVW.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonExFollowedok.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonExFollowedpoor.ClientID %>').removeAttribute('disabled');
+
+                                            document.getElementById('<%=RadioButtonEatPYes.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonEatPNo.ClientID %>').removeAttribute('disabled');
+
+                                            document.getElementById('<%=RadioButtonEatFollowedVW.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonEatFollowedOk.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonEatFollowedPoor.ClientID %>').removeAttribute('disabled');
+
+                                            document.getElementById('<%=RadioButtonMedicalAidNone.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonMedicalAidNotSure.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonMedicalAidComp.ClientID %>').removeAttribute('disabled');
+                                            document.getElementById('<%=RadioButtonMedicalAidHos.ClientID %>').removeAttribute('disabled');
+                                        }
+                                        else {
+                                            document.getElementById('<%= RadioButtonExPYes.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExPYes.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExPNo.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExPNo.ClientID %>').checked = false;
+
+                                            document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;
+
+                                            document.getElementById('<%= RadioButtonEatPYes.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatPYes.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatPNo.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatPNo.ClientID %>').checked = false;
+
+                                            document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
+
+                                            document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').checked = false;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //console.log("RadioButtonHbA1c4 NOT visable")
+                                var valHbA1C = document.getElementById("<%=lblValHbA1c.ClientID%>");
+                                if ((document.getElementById("<%=RadioButtonHbA1c3.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c6.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c7.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c8.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c9.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c10.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c11.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c12.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c15.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == false)) {
+                                    CheckResult = CheckResult + "HbA1C missing,";
+                                    valHbA1C.innerText = "*";
+                                }
+                                else {
+                                    valHbA1C.innerText = "";
+
+                                    if (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) {
+                                        document.getElementById('<%=RadioButtonExPYes.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExPNo.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonExFollowedVW.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExFollowedok.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExFollowedpoor.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonEatPYes.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatPNo.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonEatFollowedVW.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatFollowedOk.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatFollowedPoor.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonMedicalAidNone.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidNotSure.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidComp.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidHos.ClientID %>').removeAttribute('disabled');
+                                    }
+                                    else
+                                    {
+
+                                        document.getElementById('<%= RadioButtonExPYes.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExPYes.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonExPNo.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExPNo.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonEatPYes.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatPYes.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonEatPNo.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatPNo.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').checked = false;
+
+                                    }
+                                }
+                            }
+
+                            <%--var valHbA1C = document.getElementById("<%=lblValHbA1c.ClientID%>");
                             if ((document.getElementById("<%=RadioButtonHbA1c3.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c4.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c6.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c7.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c8.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c9.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c10.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c11.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c12.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1c15.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == false)) {
                                 CheckResult = CheckResult + "HbA1C missing,";
                                 valHbA1C.innerText = "*";
@@ -393,40 +555,74 @@
                                 }
                                 else
                                 {
-                                    document.getElementById('<%= RadioButtonExPYes.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonExPYes.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonExPNo.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonExPNo.ClientID %>').checked = false;
+                                    
+                                    var element = document.getElementById('<%=RadioButtonHbA1c4.ClientID%>');
+                                    if (element != null) // && element.value == '')
+                                    {
+                                        console.log("RadioButtonHbA1c4 is visable")
+                                    }
+                                    else
+                                    {
+                                        console.log("RadioButtonHbA1c4 NOT visable")
+                                    }
 
-                                    document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;                                    
+                                    if (document.getElementById('<%=RadioButtonHbA1c4.ClientID%>').checked == true) {
+                                        document.getElementById('<%=RadioButtonExPYes.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExPNo.ClientID %>').removeAttribute('disabled');
 
-                                    document.getElementById('<%= RadioButtonEatPYes.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonEatPYes.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonEatPNo.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonEatPNo.ClientID %>').checked = false;
+                                        document.getElementById('<%=RadioButtonExFollowedVW.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExFollowedok.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonExFollowedpoor.ClientID %>').removeAttribute('disabled');
 
-                                    document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
+                                        document.getElementById('<%=RadioButtonEatPYes.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatPNo.ClientID %>').removeAttribute('disabled');
 
-                                    document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').checked = false;
-                                    document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').disabled = true;
-                                    document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').checked = false;
+                                        document.getElementById('<%=RadioButtonEatFollowedVW.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatFollowedOk.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonEatFollowedPoor.ClientID %>').removeAttribute('disabled');
+
+                                        document.getElementById('<%=RadioButtonMedicalAidNone.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidNotSure.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidComp.ClientID %>').removeAttribute('disabled');
+                                        document.getElementById('<%=RadioButtonMedicalAidHos.ClientID %>').removeAttribute('disabled');
+                                    }
+                                    else
+                                    {
+                                        document.getElementById('<%= RadioButtonExPYes.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExPYes.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonExPNo.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExPNo.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonEatPYes.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatPYes.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonEatPNo.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatPNo.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
+
+                                        document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidNone.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidNotSure.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidComp.ClientID %>').checked = false;
+                                        document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').disabled = true;
+                                        document.getElementById('<%= RadioButtonMedicalAidHos.ClientID %>').checked = false;
+                                    }
                                 }
-                            }                           
+                            }--%>                           
 
                             //Excersise plan
                             //***************************************************
@@ -434,79 +630,163 @@
                             var valExFollowed = document.getElementById("<%=lblValExFollow.ClientID%>");
                             var valMedcialAid = document.getElementById("<%=lblValMedcialAid.ClientID%>");
 
-                            if (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) {
-                                if ((document.getElementById("<%=RadioButtonExPYes.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExPNo.ClientID%>").checked == false)) {
-                                    CheckResult = CheckResult + "Excersise plan missing,";
-                                    valExP.innerText = "*";
+                            var element = document.getElementById('<%=RadioButtonHbA1c4.ClientID%>');
+                            if (element != null) // && element.value == '')
+                            {
+                                if ((document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) || (document.getElementById("<%=RadioButtonHbA1c4.ClientID%>").checked == true)) {
+                                    if ((document.getElementById("<%=RadioButtonExPYes.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExPNo.ClientID%>").checked == false)) {
+                                        CheckResult = CheckResult + "Excersise plan missing,";
+                                        valExP.innerText = "*";
+                                    }
+                                    else {
+                                        valExP.innerText = "";
+
+                                        if (document.getElementById("<%=RadioButtonExPYes.ClientID%>").checked == true) {
+                                            if ((document.getElementById("<%=RadioButtonExFollowedVW.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExFollowedok.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExFollowedpoor.ClientID%>").checked == false)) {
+                                                CheckResult = CheckResult + "Excersise followed missing,";
+                                                valExFollowed.innerText = "*";
+                                            }
+                                            else {
+                                                valExFollowed.innerText = "";
+                                            }
+                                        }
+                                        else {
+                                            document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;
+                                            valExFollowed.innerText = "";
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    valExP.innerText = "";
-                                    
-                                    if (document.getElementById("<%=RadioButtonExPYes.ClientID%>").checked == true)
-                                    {
-                                        if ((document.getElementById("<%=RadioButtonExFollowedVW.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExFollowedok.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExFollowedpoor.ClientID%>").checked == false)) {
-                                            CheckResult = CheckResult + "Excersise followed missing,";
-                                            valExFollowed.innerText = "*";
-                                        }
-                                        else
-                                        {
-                                            valExFollowed.innerText = "";                                            
-                                        }
-                                    }
-                                    else
-                                    {
-                                        document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
-                                        document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
-                                        document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
-                                        document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
-                                        document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
-                                        document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;
-                                        valExFollowed.innerText = "";
-                                    }
+                                    valExP.innerText = ""; valExFollowed.innerText = ""; valMedcialAid.innerText = "";
                                 }
                             }
-                            else
-                            { valExP.innerText = ""; valExFollowed.innerText = ""; valMedcialAid.innerText = ""; }
+                            else {
+                                //console.log("RadioButtonHbA1c4 NOT visable")
+                                if ((document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true)) {
+                                    if ((document.getElementById("<%=RadioButtonExPYes.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExPNo.ClientID%>").checked == false)) {
+                                        CheckResult = CheckResult + "Excersise plan missing,";
+                                        valExP.innerText = "*";
+                                    }
+                                    else {
+                                        valExP.innerText = "";
+
+                                        if (document.getElementById("<%=RadioButtonExPYes.ClientID%>").checked == true) {
+                                            if ((document.getElementById("<%=RadioButtonExFollowedVW.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExFollowedok.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonExFollowedpoor.ClientID%>").checked == false)) {
+                                                CheckResult = CheckResult + "Excersise followed missing,";
+                                                valExFollowed.innerText = "*";
+                                            }
+                                            else {
+                                                valExFollowed.innerText = "";
+                                            }
+                                        }
+                                        else {
+                                            document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedVW.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedok.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonExFollowedpoor.ClientID %>').checked = false;
+                                            valExFollowed.innerText = "";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    valExP.innerText = ""; valExFollowed.innerText = ""; valMedcialAid.innerText = "";
+                                }
+                            }
+                            
 
                             //Eating plan
                             //***************************************************
                             var valEatP = document.getElementById("<%=lblValEatP.ClientID%>");
                             var valEatFollowed = document.getElementById("<%=lblEatFollow.ClientID%>");
 
-                            if (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) {
-                                if ((document.getElementById("<%=RadioButtonEatPYes.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatPNo.ClientID%>").checked == false)) {
-                                    CheckResult = CheckResult + "Eating plan missing,";
-                                    valEatP.innerText = "*";
-                                }
-                                else {
-                                    valEatP.innerText = "";
-                                    
-                                    if (document.getElementById("<%=RadioButtonEatPYes.ClientID%>").checked == true)
-                                    {
-                                        if ((document.getElementById("<%=RadioButtonEatFollowedVW.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatFollowedOk.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatFollowedPoor.ClientID%>").checked == false)) {
-                                            CheckResult = CheckResult + "Eating followed missing,";
-                                            valEatFollowed.innerText = "*";
+                            var element = document.getElementById('<%=RadioButtonHbA1c4.ClientID%>');
+                            if (element != null) // && element.value == '')
+                            {
+                                //console.log("RadioButtonHbA1c4 is visable")
+                                //if (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) {
+                                if ((document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) || (document.getElementById("<%=RadioButtonHbA1c4.ClientID%>").checked == true)) {
+                                    if ((document.getElementById("<%=RadioButtonEatPYes.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatPNo.ClientID%>").checked == false)) {
+                                        CheckResult = CheckResult + "Eating plan missing,";
+                                        valEatP.innerText = "*";
+                                    }
+                                    else {
+                                        valEatP.innerText = "";
+
+                                        if (document.getElementById("<%=RadioButtonEatPYes.ClientID%>").checked == true) {
+                                            if ((document.getElementById("<%=RadioButtonEatFollowedVW.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatFollowedOk.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatFollowedPoor.ClientID%>").checked == false)) {
+                                                CheckResult = CheckResult + "Eating followed missing,";
+                                                valEatFollowed.innerText = "*";
+                                            }
+                                            else {
+                                                valEatFollowed.innerText = "";
+
+                                            }
                                         }
-                                        else
-                                        {
+                                        else {
+                                            document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
                                             valEatFollowed.innerText = "";
-                                            
                                         }
                                     }
-                                    else
-                                    {
-                                        document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
-                                        document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
-                                        document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
-                                        document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
-                                        document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
-                                        document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
-                                        valEatFollowed.innerText = "";
-                                    }
+                                }
+                                else
+                                {
+                                    valEatP.innerText = ""; valEatFollowed.innerText = "";
                                 }
                             }
-                            else { valEatP.innerText = ""; valEatFollowed.innerText = ""; }
+                            else
+                            {
+                                //console.log("RadioButtonHbA1c4 NOT visable")
+                                //if (document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true) {
+                                if ((document.getElementById("<%=RadioButtonHbA1cUnknown.ClientID%>").checked == true)) {
+                                    if ((document.getElementById("<%=RadioButtonEatPYes.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatPNo.ClientID%>").checked == false)) {
+                                        CheckResult = CheckResult + "Eating plan missing,";
+                                        valEatP.innerText = "*";
+                                    }
+                                    else {
+                                        valEatP.innerText = "";
+
+                                        if (document.getElementById("<%=RadioButtonEatPYes.ClientID%>").checked == true) {
+                                            if ((document.getElementById("<%=RadioButtonEatFollowedVW.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatFollowedOk.ClientID%>").checked == false) && (document.getElementById("<%=RadioButtonEatFollowedPoor.ClientID%>").checked == false)) {
+                                                CheckResult = CheckResult + "Eating followed missing,";
+                                                valEatFollowed.innerText = "*";
+                                            }
+                                            else {
+                                                valEatFollowed.innerText = "";
+
+                                            }
+                                        }
+                                        else {
+                                            document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedVW.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedOk.ClientID %>').checked = false;
+                                            document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').disabled = true;
+                                            document.getElementById('<%= RadioButtonEatFollowedPoor.ClientID %>').checked = false;
+                                            valEatFollowed.innerText = "";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    valEatP.innerText = ""; valEatFollowed.innerText = "";
+                                }
+                            }
+
+                            
 
                             //High BP
                             //***************************************************
@@ -1771,6 +2051,7 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinNo" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinNotSure" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtCoverLife" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadButtonGenerateLetter">      
@@ -2585,7 +2866,7 @@
                                                 </td>
                                                 <td>                                                    
                                                     <asp:RadioButton ID="RadioButtonHbA1c3" runat="server" GroupName="HbA1c" Text="Post-UW < 5%" Font-Size="Smaller" TabIndex="40" onclick="handleHbA1cClick(this)"/>
-                                                    <asp:RadioButton ID="RadioButtonHbA1c4" runat="server" GroupName="HbA1c" Text="< 5%" Font-Size="Smaller" TabIndex="40" onclick="handleHbA1cClick(this)" Visible="false"/>
+                                                    <asp:RadioButton ID="RadioButtonHbA1c4" runat="server" GroupName="HbA1c" Text="< 5%" Font-Size="Smaller" TabIndex="40" onclick="handleHbA1cClick(this)" />
                                                     <asp:RadioButton ID="RadioButtonHbA1c6" runat="server" GroupName="HbA1c" Text="5% - 6.99%" Font-Size="Smaller" TabIndex="41" onclick="handleHbA1cClick(this)"/>
                                                     <asp:RadioButton ID="RadioButtonHbA1c7" runat="server" GroupName="HbA1c" Text="7% - 7.99%" Font-Size="Smaller" TabIndex="42" onclick="handleHbA1cClick(this)"/>
                                                     <asp:RadioButton ID="RadioButtonHbA1c8" runat="server" GroupName="HbA1c" Text="8% - 8.99%" Font-Size="Smaller" TabIndex="43" onclick="handleHbA1cClick(this)"/>

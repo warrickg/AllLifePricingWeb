@@ -40,6 +40,17 @@ namespace AllLifePricingWeb
                 RadTxtMagnumID.Focus();
                 PopulateOccupation();
                 PopulateBenifitDropdowns();
+
+                if (RadComboBoxTypeBenefitLife.Items.Count() > 1)
+                {
+                    RadioButtonHbA1c4.Visible = false;
+                    RadioButtonHbA1c3.Visible = true;
+                }
+                else
+                {
+                    RadioButtonHbA1c4.Visible = true;
+                    RadioButtonHbA1c3.Visible = false;
+                }
             }            
         }
         
@@ -361,7 +372,7 @@ namespace AllLifePricingWeb
                 if (RadioButtonHbA1c3.Checked == true)
                     intHbA1c = 4;
                 if (RadioButtonHbA1c4.Checked == true)
-                    //intHbA1c = 4;
+                    intHbA1c = 4;
                 if (RadioButtonHbA1c6.Checked == true)
                     intHbA1c = 6;
                 if (RadioButtonHbA1c7.Checked == true)
@@ -434,15 +445,30 @@ namespace AllLifePricingWeb
                 }
                 else
                 {
-                    LblQualificationMessage.Text = strResultLife;
-                    PanelLife.GroupingText = "Life - Unavailable";
-                    //PanelLife.Enabled = false;
-                    RadioButtonEscLife6.Enabled = false;
-                    RadioButtonEscLife10.Enabled = false;
-                    RadNumericTxtCoverLife.Enabled = false;
-                    RadNumericTxtPremiumLife.Enabled = false;
-                    RadNumericTxtEMLoadingLife.Enabled = false;
-                    hideOption1Life();
+                        LblQualificationMessage.Text = strResultLife;
+                        PanelLife.GroupingText = "Life - Unavailable";
+                        if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB")
+                        {
+                            //PanelLife.Enabled = false;
+                            RadioButtonEscLife6.Enabled = false;
+                            RadioButtonEscLife10.Enabled = false;
+                            RadNumericTxtCoverLife.Enabled = false;
+                            RadNumericTxtPremiumLife.Enabled = false;
+                            RadNumericTxtEMLoadingLife.Enabled = false;
+                            hideOption1Life();
+                        }
+                        else
+                        {
+                            RadioButtonEscLife6.Enabled = true;
+                            RadioButtonEscLife10.Enabled = true;
+                            RadNumericTxtCoverLife.Enabled = true;
+                            RadNumericTxtPremiumLife.Enabled = true;
+                            RadNumericTxtEMLoadingLife.Enabled = true;
+
+                            //RadioButtonQuoteLifeYes.Checked = true;
+                            //RadioButtonEscLife6.Checked = true;
+                            //RadioButtonEsc6.Checked = true;
+                        }
                 }
                 #endregion
 
@@ -632,20 +658,136 @@ namespace AllLifePricingWeb
                 }
                 else
                 {
-                    lblDisabilityMessage.Text = strResultDisability;
-                    PanelDisability.GroupingText = "Disability - Unavailable";
-                    //PanelDisability.Enabled = false;
-                    RadioButtonTypeOfDisADW.Enabled = false;
-                    RadioButtonTypeOfDisOCC.Enabled = false;
-                    RadioButtonEscalationDis6.Enabled = false;
-                    RadioButtonEscalationDis10.Enabled = false;
-                    RadioButtonQuoteDisYes.Enabled = false;
-                    RadioButtonQuoteDisNo.Enabled = false;
-                    RadNumericTxtCoverAmnDis.Enabled = false;
-                    RadNumericTxtPremiumDis.Enabled = false;
-                    RadNumericTxtEMLoadingDisability.Enabled = false;
+                    if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB")
+                    {
+                        lblDisabilityMessage.Text = strResultDisability;
+                        PanelDisability.GroupingText = "Disability - Unavailable";
+                        //PanelDisability.Enabled = false;
+                        RadioButtonTypeOfDisADW.Enabled = false;
+                        RadioButtonTypeOfDisOCC.Enabled = false;
+                        RadioButtonEscalationDis6.Enabled = false;
+                        RadioButtonEscalationDis10.Enabled = false;
+                        RadioButtonQuoteDisYes.Enabled = false;
+                        RadioButtonQuoteDisNo.Enabled = false;
+                        RadNumericTxtCoverAmnDis.Enabled = false;
+                        RadNumericTxtPremiumDis.Enabled = false;
+                        RadNumericTxtEMLoadingDisability.Enabled = false;
 
-                    hideOption1Disability();
+                        hideOption1Disability();
+                    }
+                    else
+                    {
+                        RadioButtonTypeOfDisADW.Enabled = true;
+                        RadioButtonTypeOfDisOCC.Enabled = true;
+                        RadioButtonEscalationDis6.Enabled = true;
+                        RadioButtonEscalationDis10.Enabled = true;
+                        RadioButtonQuoteDisYes.Enabled = true;
+                        RadioButtonQuoteDisNo.Enabled = true;
+                        RadNumericTxtCoverAmnDis.Enabled = true;
+                        RadNumericTxtPremiumDis.Enabled = true;
+                        RadNumericTxtEMLoadingDisability.Enabled = true;
+
+                        //RadioButtonQuoteDisYes.Checked = true;
+                        //////RadioButtonEscalationDis6.Checked = true;
+                        //////if (intClass > 0)
+                        //////{
+                        //////    lblDisabilityMessage.Text += ", class:" + intClass.ToString();
+                        //////}    
+
+
+                        sqlCommandX = new SqlCommand();
+                        sqlCommandX.Connection = sqlConnectionX;
+                        sqlCommandX.CommandType = CommandType.StoredProcedure;
+                        sqlCommandX.CommandText = "spx_Select_OccupationLimitsByOccupation";
+
+                        sqlParam = new SqlParameter("Occupation", strEmployment);
+                        sqlCommandX.Parameters.Add(sqlParam);
+
+                        bool blnADW = false;
+                        bool blnOCC = false;
+
+                        sqlDR = sqlCommandX.ExecuteReader();
+                        while (sqlDR.Read())
+                        {
+                            if (sqlDR.GetBoolean(1) == true)  //sql column 1 = ADW
+                                blnADW = true;
+                            if (sqlDR.GetBoolean(2) == true)  //sql column 2 = OCC
+                                blnOCC = true;
+                        }
+
+                        sqlDR.Close();
+                        sqlDR.Dispose();
+
+                        if ((intClass >= 1) && (intClass < 4))
+                        {
+                            if (blnOCC == true)
+                            {
+                                RadioButtonTypeOfDisOCC.Enabled = true;
+                                RadioButtonTypeOfDisOCC.Checked = true;
+                                RadioButtonTypeOfDisADW.Enabled = true;
+                                RadTxtDisabilityType.Text = "OCC";
+                            }
+                            else
+                            {
+                                if (blnADW == true)
+                                {
+                                    RadioButtonTypeOfDisOCC.Enabled = false;
+                                    RadioButtonTypeOfDisOCC.Checked = false;
+                                    RadioButtonTypeOfDisADW.Enabled = true;
+                                    RadioButtonTypeOfDisADW.Checked = true;
+                                    RadTxtDisabilityType.Text = "ADW";
+                                }
+                                else
+                                {
+                                    strResultDisability = "Occupation does not allow disability";
+                                    lblDisabilityMessage.Text = strResultDisability;
+                                    PanelDisability.GroupingText = "Disability - Unavailable";
+                                    //PanelDisability.Enabled = false;
+                                    RadioButtonTypeOfDisADW.Enabled = false;
+                                    RadioButtonTypeOfDisOCC.Enabled = false;
+                                    RadioButtonEscalationDis6.Enabled = false;
+                                    RadioButtonEscalationDis10.Enabled = false;
+                                    RadioButtonQuoteDisYes.Enabled = false;
+                                    RadioButtonQuoteDisNo.Enabled = false;
+                                    RadNumericTxtCoverAmnDis.Enabled = false;
+                                    RadNumericTxtPremiumDis.Enabled = false;
+                                    RadNumericTxtEMLoadingDisability.Enabled = false;
+
+                                    hideOption1Disability();
+                                }
+                            }
+                        }
+
+
+                        if (intClass > 3)
+                        {
+                            if (blnADW == true)
+                            {
+                                RadioButtonTypeOfDisOCC.Enabled = false;
+                                RadioButtonTypeOfDisOCC.Checked = false;
+                                RadioButtonTypeOfDisADW.Enabled = true;
+                                RadioButtonTypeOfDisADW.Checked = true;
+                                RadTxtDisabilityType.Text = "ADW";
+                            }
+                            else
+                            {
+                                strResultDisability = "Occupation does not allow disability";
+                                lblDisabilityMessage.Text = strResultDisability;
+                                PanelDisability.GroupingText = "Disability - Unavailable";
+                                //PanelDisability.Enabled = false;
+                                RadioButtonTypeOfDisADW.Enabled = false;
+                                RadioButtonTypeOfDisOCC.Enabled = false;
+                                RadioButtonEscalationDis6.Enabled = false;
+                                RadioButtonEscalationDis10.Enabled = false;
+                                RadioButtonQuoteDisYes.Enabled = false;
+                                RadioButtonQuoteDisNo.Enabled = false;
+                                RadNumericTxtCoverAmnDis.Enabled = false;
+                                RadNumericTxtPremiumDis.Enabled = false;
+                                RadNumericTxtEMLoadingDisability.Enabled = false;
+                                hideOption1Disability();
+                            }
+                        }
+                    }
                 }
                 #endregion
 
@@ -991,7 +1133,7 @@ namespace AllLifePricingWeb
 
                 #endregion
 
-                //The below was added so that if ADB or ADCB are selected iit does not take the qualification into account
+                //The below was added so that if ADB or ACDB are selected iit does not take the qualification into account
                 if (RadComboBoxTypeBenefitLife.SelectedItem.Text != "FDB")
                 {
                     strResultLife = "Successful";
@@ -1728,9 +1870,18 @@ namespace AllLifePricingWeb
                                 if (strHbA1c == "0")
                                     RadioButtonHbA1cUnknown.Checked = true;
                                 if (strHbA1c == "4")
-                                    RadioButtonHbA1c3.Checked = true;
-                                //if (strHbA1c == "4")
-                                //    RadioButtonHbA1c4.Checked = true;
+                                {
+                                    if (RadioButtonHbA1c3.Visible == true)
+                                    {
+                                        RadioButtonHbA1c3.Checked = true;
+                                    }
+                                    else
+                                    {
+                                        RadioButtonHbA1c4.Checked = true;
+                                    }
+                                    //if (strHbA1c == "4")
+                                    //    RadioButtonHbA1c4.Checked = true;
+                                }
                                 if (strHbA1c == "6")
                                     RadioButtonHbA1c6.Checked = true;
                                 if (strHbA1c == "7")
@@ -1967,16 +2118,47 @@ namespace AllLifePricingWeb
                                 {
                                     PanelLife.GroupingText = "Life - Unavailable";
                                     //PanelLife.Enabled = false;
-                                    RadioButtonEscLife6.Enabled = false;
-                                    RadioButtonEscLife10.Enabled = false;
-                                    RadNumericTxtCoverLife.Enabled = false;
-                                    RadNumericTxtPremiumLife.Enabled = false;
-                                    RadNumericTxtEMLoadingLife.Enabled = false;
-
-                                    RadioButtonQuoteLifeNo.Checked = true;
-                                    if (strQualifyDisability != "ok")
+                                    //if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB")
+                                    if ((strLifeBenifit == "FDB") || (RadComboBoxTypeBenefitLife.Items.Count() == 1))
                                     {
-                                        LblOffer.Text = "Unfortnatley we are unable to offer you cover at this time";
+                                        RadioButtonEscLife6.Enabled = false;
+                                        RadioButtonEscLife10.Enabled = false;
+                                        RadNumericTxtCoverLife.Enabled = false;
+                                        RadNumericTxtPremiumLife.Enabled = false;
+                                        RadNumericTxtEMLoadingLife.Enabled = false;
+
+                                        RadioButtonQuoteLifeNo.Checked = true;
+                                        if (strQualifyDisability != "ok")
+                                        {
+                                            LblOffer.Text = "Unfortnatley we are unable to offer you cover at this time";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        RadioButtonEscLife6.Enabled = true;
+                                        RadioButtonEscLife10.Enabled = true;
+                                        RadNumericTxtCoverLife.Enabled = true;
+                                        RadNumericTxtPremiumLife.Enabled = true;
+                                        RadNumericTxtEMLoadingLife.Enabled = true;
+
+                                        RadioButtonQuoteLifeYes.Checked = true;
+
+                                        #region "EscalationLife"
+                                        if (strEscalationLife == "6.00")
+                                        {
+                                            //RadioButtonEscLife6.Checked = true;
+                                            RadioButtonEsc6.Checked = true;
+                                            RadioButtonEsc10.Checked = false;
+                                            HiddenFieldEscalationLife.Value = "6.00";
+                                        }
+                                        if (strEscalationLife == "10.00")
+                                        {
+                                            //RadioButtonEscLife10.Checked = true;
+                                            RadioButtonEsc6.Checked = false;
+                                            RadioButtonEsc10.Checked = true;
+                                            HiddenFieldEscalationLife.Value = "10.00";
+                                        }
+                                        #endregion
                                     }
                                 }
                                 #endregion
@@ -2026,18 +2208,48 @@ namespace AllLifePricingWeb
                                 {
                                     PanelDisability.GroupingText = "Disability - Unavailable";
                                     //PanelDisability.Enabled = false;
-                                    RadioButtonTypeOfDisADW.Enabled = false;
-                                    RadioButtonTypeOfDisOCC.Enabled = false;
-                                    RadioButtonEscalationDis6.Enabled = false;
-                                    RadioButtonEscalationDis10.Enabled = false;
-                                    RadioButtonQuoteDisYes.Enabled = false;
-                                    RadioButtonQuoteDisNo.Enabled = false;
-                                    RadNumericTxtCoverAmnDis.Enabled = false;
-                                    RadNumericTxtPremiumDis.Enabled = false;
-                                    RadNumericTxtEMLoadingDisability.Enabled = false;
 
-                                    RadioButtonQuoteDisNo.Checked = true;
-                                    //hideOption1Disability();
+                                    //if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB")
+                                    if ((strDisabilityBenifit == "FDB") || (RadComboBoxTypeBenefitDisability.Items.Count() == 1))
+                                    {                                        
+                                        RadioButtonTypeOfDisADW.Enabled = false;
+                                        RadioButtonTypeOfDisOCC.Enabled = false;
+                                        RadioButtonEscalationDis6.Enabled = false;
+                                        RadioButtonEscalationDis10.Enabled = false;
+                                        RadioButtonQuoteDisYes.Enabled = false;
+                                        RadioButtonQuoteDisNo.Enabled = false;
+                                        RadNumericTxtCoverAmnDis.Enabled = false;
+                                        RadNumericTxtPremiumDis.Enabled = false;
+                                        RadNumericTxtEMLoadingDisability.Enabled = false;
+
+                                        RadioButtonQuoteDisNo.Checked = true;
+                                        //hideOption1Disability();
+                                    }
+                                    else
+                                    {
+                                        RadioButtonTypeOfDisADW.Enabled = true;
+                                        RadioButtonTypeOfDisOCC.Enabled = true;
+                                        RadioButtonEscalationDis6.Enabled = true;
+                                        RadioButtonEscalationDis10.Enabled = true;
+                                        RadioButtonQuoteDisYes.Enabled = true;
+                                        RadioButtonQuoteDisNo.Enabled = true;
+                                        RadNumericTxtCoverAmnDis.Enabled = true;
+                                        RadNumericTxtPremiumDis.Enabled = true;
+                                        RadNumericTxtEMLoadingDisability.Enabled = true;
+
+                                        RadioButtonQuoteDisYes.Checked = true;
+
+                                        if (strDisabilityType == "ADW")
+                                        {
+                                            RadioButtonTypeOfDisADW.Checked = true;
+                                            RadioButtonTypeOfDisOCC.Checked = false;
+                                        }
+                                        if (strDisabilityType == "OCC")
+                                        {
+                                            RadioButtonTypeOfDisOCC.Checked = true;
+                                            RadioButtonTypeOfDisADW.Checked = false;
+                                        }
+                                    }
                                 }
                                 #endregion
 
@@ -2289,7 +2501,8 @@ namespace AllLifePricingWeb
                                         RadNumericTxtOption4Premium.Visible = true;
                                         RadNumericTxtOption4Premium.Text = foundRows[0]["PremiumLife"].ToString();
                                         lblOp4_2.Visible = true;
-                                        if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                        //if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                        if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                         {
                                             lblOp4_2.Text = "rands per month";
                                         }
@@ -3392,7 +3605,7 @@ namespace AllLifePricingWeb
             //C5	>10<=11
             //C6	>11<=12
             //C7	>12<=14
-            if ((RadioButtonHbA1c3.Checked == true) || (RadioButtonHbA1c6.Checked == true))
+            if ((RadioButtonHbA1c3.Checked == true) || (RadioButtonHbA1c4.Checked == true) || (RadioButtonHbA1c6.Checked == true))
                 strControlLevel = "C1";
             if (RadioButtonHbA1c7.Checked == true)
                 strControlLevel = "C2";
@@ -3867,7 +4080,7 @@ namespace AllLifePricingWeb
                 //C5	>10<=11
                 //C6	>11<=12
                 //C7	>12<=14
-                if ((RadioButtonHbA1c3.Checked == true) || (RadioButtonHbA1c6.Checked == true))
+                if ((RadioButtonHbA1c3.Checked == true) || (RadioButtonHbA1c4.Checked == true) || (RadioButtonHbA1c6.Checked == true))
                     strControlLevel = "C1";
                 if (RadioButtonHbA1c7.Checked == true)
                     strControlLevel = "C2";
@@ -4216,8 +4429,8 @@ namespace AllLifePricingWeb
                 if (RadNumericTxtEMLoadingDisability.Text.Trim() == "")
                     RadNumericTxtEMLoadingDisability.Text = "0";
 
-                    if (PanelDisability.GroupingText.Contains("Unavailable") == false)
-                    {
+                    //if (PanelDisability.GroupingText.Contains("Unavailable") == false)
+                    //{
                         if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "ADB")
                         {
                             strRiskModifier = "ACCIDENTAL";
@@ -4374,7 +4587,7 @@ namespace AllLifePricingWeb
                             //    decPremium = Convert.ToDecimal(RadNumericTxtPremiumLife.Text);
                             //}
                         }
-                    }
+                    //}
                 #endregion               
 
                 #region "Button 1, 2 / 3 only"
@@ -4390,7 +4603,7 @@ namespace AllLifePricingWeb
 
                     if (RadioButtonQuoteLifeNo.Checked == false)
                     {
-                        if (PanelLife.GroupingText.Contains("Unavailable") == false)
+                        if ((PanelLife.GroupingText.Contains("Unavailable") == false) || (RadComboBoxTypeBenefitLife.SelectedItem.Text != "FDB"))
                         {
                             blnUseLife = true;
                         }
@@ -4398,7 +4611,7 @@ namespace AllLifePricingWeb
 
                     if (RadioButtonQuoteDisNo.Checked == false)
                     {
-                        if (PanelDisability.GroupingText.Contains("Unavailable") == false)
+                        if ((PanelDisability.GroupingText.Contains("Unavailable") == false)  || (RadComboBoxTypeBenefitDisability.SelectedItem.Text != "FDB"))
                         {
                             blnUseDisability = true;
                         }
@@ -5012,7 +5225,7 @@ namespace AllLifePricingWeb
                     blnLifeOk = false;
                 }
 
-                if (PanelLife.GroupingText.Contains("Unavailable") == true)
+                if ((PanelLife.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB"))
                 {
                     blnLifeOk = false;
                 }
@@ -5022,14 +5235,14 @@ namespace AllLifePricingWeb
                     blnDisabilityOk = false;
                 }
 
-                if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                 {
                     blnDisabilityOk = false;
                 }
 
                 if (RadioButtonQuoteLifeNo.Checked == false)
                 {
-                    if (PanelLife.GroupingText.Contains("Unavailable") == false)
+                    if ((PanelLife.GroupingText.Contains("Unavailable") == false) || (RadComboBoxTypeBenefitLife.SelectedItem.Text != "FDB"))
                     {
                         switch (buttonNumber)
                         {
@@ -5041,7 +5254,7 @@ namespace AllLifePricingWeb
                                 RadNumericTxtOption1Premium.Visible = true;
                                 RadNumericTxtOption1Premium.Text = decPremium.ToString();
                                 lblOp1_2.Visible = true;
-                                if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                 {
                                     lblOp1_2.Text = "rands per month";
                                    
@@ -5074,7 +5287,7 @@ namespace AllLifePricingWeb
                                 RadNumericTxtOption2Premium.Visible = true;
                                 RadNumericTxtOption2Premium.Text = decPremium.ToString();
                                 lblOp2_2.Visible = true;
-                                if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                 {
                                     lblOp2_2.Text = "rands per month";
                                     //if (Convert.ToInt32(RadNumericTxtOption1Premium.Text) >= 130)
@@ -5234,12 +5447,13 @@ namespace AllLifePricingWeb
                                 RadNumericTxtOption3Premium.Visible = true;
                                 RadNumericTxtOption3Premium.Text = decPremium.ToString();
                                 lblOp3_2.Visible = true;
-                                if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                 {
                                     lblOp3_2.Text = "rands per month";
                                     //if (Convert.ToInt32(RadNumericTxtOption2Premium.Text) > 130)
                                     if (Convert.ToInt32(RadNumericTxtOption2Total.Text) > 130)
                                     {
+                                        #region "Old"
                                         //if (decPremium < 130)
                                         //{
                                         //    #region "Get cover for R130"
@@ -5293,6 +5507,7 @@ namespace AllLifePricingWeb
                                         //    RadNumericTxtOption3RandValue.Text = decCover.ToString();
                                         //    RadNumericTxtOption3Premium.Text = decPremium.ToString();
                                         //}
+                                        #endregion
 
                                         RadNumericTxtOption3Total.Text = decPremium.ToString();
                                     }
@@ -5320,6 +5535,7 @@ namespace AllLifePricingWeb
 
                                     if (Convert.ToInt32(RadNumericTxtOption2Total.Text) > 130)
                                     {
+                                        #region "Old"
                                         //if (decPremium < 130)
                                         //{
                                         //    #region "Get cover for R130"
@@ -5373,6 +5589,7 @@ namespace AllLifePricingWeb
                                         //    RadNumericTxtOption3RandValue.Text = decCover.ToString();
                                         //    RadNumericTxtOption3Premium.Text = decPremium.ToString();
                                         //}
+                                        #endregion
                                     }
                                     else
                                     {
@@ -5395,7 +5612,8 @@ namespace AllLifePricingWeb
                                 RadNumericTxtOption4Premium.Visible = true;
                                 RadNumericTxtOption4Premium.Text = decPremium.ToString();
                                 lblOp4_2.Visible = true;
-                                if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                //if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                 {
                                     lblOp4_2.Text = "rands per month";
                                     decimal decTotal = 0;
@@ -5467,7 +5685,8 @@ namespace AllLifePricingWeb
 
 
                                 lblOp5_2.Visible = true;
-                                if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                //if (PanelDisability.GroupingText.Contains("Unavailable") == true)
+                                if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                 {
                                     lblOp5_2.Text = "rands per month";
                                 }
@@ -5530,7 +5749,7 @@ namespace AllLifePricingWeb
 
                 if (RadioButtonQuoteDisNo.Checked == false)
                 {
-                    if (PanelDisability.GroupingText.Contains("Unavailable") == false)
+                    if ((PanelDisability.GroupingText.Contains("Unavailable") == false) || (RadComboBoxTypeBenefitDisability.SelectedItem.Text != "FDB"))
                     {
                         switch (buttonNumber)
                         {

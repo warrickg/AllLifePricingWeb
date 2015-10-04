@@ -2051,6 +2051,7 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinNo" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinNotSure" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtCoverLife" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadButtonGenerateLetter">      
