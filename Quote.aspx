@@ -1679,6 +1679,14 @@
                             CheckQualifyButton();
                         }
 
+                        function handleQuoteButtons(myRadio) {
+
+                            var buttonGenerateLetter = $find('<%= RadButtonGenerateLetter.ClientID %>');
+                            buttonGenerateLetter.set_enabled(false);
+                            var lblRequalify = document.getElementById("<%=lblRequalify.ClientID%>");
+                            lblRequalify.innerText = "You need to re-qualify after changing the quote options";
+                        }
+
                         function handleMarriedClick(myRadio) {
 
                             if (myRadio.value == "RadioButtonMaritalStatusMarried")
@@ -2051,7 +2059,7 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinNo" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonInsulinNotSure" UpdatePanelCssClass="" />
-                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtCoverLife" UpdatePanelCssClass="" />                    
+                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtCoverLife" UpdatePanelCssClass="" />                  
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadButtonGenerateLetter">      
@@ -2333,6 +2341,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonListWhoIsPaying" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitLife" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadBtnOption2">
@@ -2364,6 +2374,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonListWhoIsPaying" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitLife" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadBtnOption3">
@@ -2394,6 +2406,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonListWhoIsPaying" UpdatePanelCssClass="" />    
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitLife" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadBtnOption4">
@@ -2424,6 +2438,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonListWhoIsPaying" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitLife" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting>   
             <telerik:AjaxSetting AjaxControlID="RadBtnOption5">
@@ -2454,6 +2470,9 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonListWhoIsPaying" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitLife" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
+                    
                 </UpdatedControls>
             </telerik:AjaxSetting> 
             <telerik:AjaxSetting AjaxControlID="RadButtonLoadQuote">   
@@ -3470,8 +3489,8 @@
                                                 <asp:Label ID="Label27" runat="server" Text="Quote:"></asp:Label>
                                             </td>
                                             <td>
-                                                <asp:RadioButton ID="RadioButtonQuoteLifeYes" runat="server" GroupName="QuoteLife" Text="Yes" Font-Size="Smaller" AutoPostBack="True"/>
-                                                <asp:RadioButton ID="RadioButtonQuoteLifeNo" runat="server" GroupName="QuoteLife" Text="No" Font-Size="Smaller" AutoPostBack="True"/>
+                                                <asp:RadioButton ID="RadioButtonQuoteLifeYes" runat="server" GroupName="QuoteLife" Text="Yes" Font-Size="Smaller" AutoPostBack="True" onclick="handleQuoteButtons(this)"/>
+                                                <asp:RadioButton ID="RadioButtonQuoteLifeNo" runat="server" GroupName="QuoteLife" Text="No" Font-Size="Smaller" AutoPostBack="True" onclick="handleQuoteButtons(this)"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -3560,8 +3579,8 @@
                                                 <asp:Label ID="Label32" runat="server" Text="Quote:"></asp:Label>
                                             </td>
                                             <td>
-                                                <asp:RadioButton ID="RadioButtonQuoteDisYes" runat="server" GroupName="QuoteDis" Text="Yes" Font-Size="Smaller" AutoPostBack="True"/>
-                                                <asp:RadioButton ID="RadioButtonQuoteDisNo" runat="server" GroupName="QuoteDis" Text="No" Font-Size="Smaller" AutoPostBack="True"/>
+                                                <asp:RadioButton ID="RadioButtonQuoteDisYes" runat="server" GroupName="QuoteDis" Text="Yes" Font-Size="Smaller" AutoPostBack="True" onclick="handleQuoteButtons(this)"/>
+                                                <asp:RadioButton ID="RadioButtonQuoteDisNo" runat="server" GroupName="QuoteDis" Text="No" Font-Size="Smaller" AutoPostBack="True" onclick="handleQuoteButtons(this)"/>
                                             </td>
                                         </tr>
                                         <tr>
