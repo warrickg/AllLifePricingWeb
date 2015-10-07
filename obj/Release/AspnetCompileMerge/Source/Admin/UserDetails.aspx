@@ -246,7 +246,7 @@
                                                 </telerik:RadButton>                                                
                                             </td>
                                             <td>                                                
-                                                <telerik:RadButton ID="RadBtnChkADCB" runat="server" ButtonType="ToggleButton" Text="ADCB" ToggleType="CheckBox" TabIndex="9">
+                                                <telerik:RadButton ID="RadBtnChkADCB" runat="server" ButtonType="ToggleButton" Text="ACDB" ToggleType="CheckBox" TabIndex="9">
                                                 </telerik:RadButton>                                                
                                             </td>
                                             <td>                                                
