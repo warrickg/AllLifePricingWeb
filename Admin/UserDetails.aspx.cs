@@ -176,7 +176,7 @@ namespace AllLifePricingWeb.Admin
                     RadBtnChkFDB.Checked = true;
                 if (BenifitList.Contains("ADB"))
                     RadBtnChkADB.Checked = true;
-                if (BenifitList.Contains("ADCB"))
+                if (BenifitList.Contains("ACDB"))
                     RadBtnChkADCB.Checked = true;
 
                 if (blnEMLoadingAccess == true)
@@ -351,9 +351,9 @@ namespace AllLifePricingWeb.Admin
                                 if (RadBtnChkADCB.Checked == true)
                                 {
                                     if (strBenifits.Length == 0)
-                                        strBenifits = "ADCB";
+                                        strBenifits = "ACDB";
                                     else
-                                        strBenifits += ",ADCB";
+                                        strBenifits += ",ACDB";
                                 }
 
                                 if (RadBtnChkEMLoading.Checked == true)
@@ -460,9 +460,9 @@ namespace AllLifePricingWeb.Admin
                         if (RadBtnChkADCB.Checked == true)
                         {
                             if (strBenifits.Length == 0)
-                                strBenifits = "ADCB";
+                                strBenifits = "ACDB";
                             else
-                                strBenifits += ",ADCB";
+                                strBenifits += ",ACDB";
                         }
 
                         if (RadBtnChkEMLoading.Checked == true)
@@ -587,9 +587,9 @@ namespace AllLifePricingWeb.Admin
                     if (RadBtnChkADCB.Checked == true)
                     {
                         if (strBenifits.Length == 0)
-                            strBenifits = "ADCB";
+                            strBenifits = "ACDB";
                         else
-                            strBenifits += ",ADCB";
+                            strBenifits += ",ACDB";
                     }
 
                     if (RadBtnChkEMLoading.Checked == true)
