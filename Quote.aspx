@@ -2457,6 +2457,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeNo" UpdatePanelCssClass="" />                    
                     <telerik:AjaxUpdatedControl ControlID="RadButtonGenerateLetter" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
@@ -2491,6 +2493,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeYes" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeNo" UpdatePanelCssClass="" /> 
                     <telerik:AjaxUpdatedControl ControlID="RadButtonGenerateLetter" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
