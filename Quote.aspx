@@ -1114,15 +1114,26 @@
                             var textBoxSpouseIncome = $find('<%= RadNumericTxtSpouseIncome.ClientID %>');
                             var strIncome = textBoxIncome.get_textBoxValue().toString();
                             var strSpouseIncome = textBoxSpouseIncome.get_textBoxValue().toString();
+                            //console.log("income1");
+                            //console.log(strIncome);
                             strIncome = strIncome.replace("R ", "");
                             strIncome = strIncome.replace(" ", "");
+                            //console.log("income2");
+                            //console.log(strIncome);
+                            strIncome = strIncome.replace(" ", "");
+                            //console.log("income3");
+                            //console.log(strIncome);
                             strSpouseIncome = strSpouseIncome.replace("R ", "");
                             strSpouseIncome = strSpouseIncome.replace(" ", "");
+                            strSpouseIncome = strSpouseIncome.replace(" ", "");
+                            
                             //console.log(strIncome);
                             //console.log(strSpouseIncome);
                             var ComboBoxOccupation = $find('<%=RadComboBoxOccupation.ClientID %>');
                             var OccupationVal = ComboBoxOccupation.get_selectedItem().get_text();
                             var Income = parseFloat(strIncome);                        
+                            //console.log("income");
+                            //console.log(Income);
 
                             if (OccupationVal == "House spouse (qualify for disability + same cover amt as spouse)")
                             {
@@ -1138,6 +1149,8 @@
 
                             //var Income = parseFloat(strIncome);
                             var maxCover = (Income * 12) * 15;
+                            //console.log("income");
+                            //console.log(Income);
                             //console.log("maxCover");
                             //console.log(maxCover);
                             if (maxCover < 350000)
@@ -1171,7 +1184,9 @@
                             var strIncome = textBoxIncome.get_textBoxValue().toString();
                             strIncome = strIncome.replace("R ", "");
                             strIncome = strIncome.replace(" ", "");
+                            strIncome = strIncome.replace(" ", "");
                             strSpouseIncome = strSpouseIncome.replace("R ", "");
+                            strSpouseIncome = strSpouseIncome.replace(" ", "");
                             strSpouseIncome = strSpouseIncome.replace(" ", "");
                             var ComboBoxOccupation = $find('<%=RadComboBoxOccupation.ClientID %>');
                             var OccupationVal = ComboBoxOccupation.get_selectedItem().get_text();
@@ -2312,7 +2327,9 @@
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonMaritalStatusNotMarried" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonMaritalStatusMarried" UpdatePanelCssClass="" />
-                    <telerik:AjaxUpdatedControl ControlID="RadNotification1" UpdatePanelCssClass="" />                    
+                    <telerik:AjaxUpdatedControl ControlID="RadNotification1" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtCoverAmnDis" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtPremiumDis" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadBtnOption1">
@@ -2440,6 +2457,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadButtonGenerateLetter" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
             </telerik:AjaxSetting>   
             <telerik:AjaxSetting AjaxControlID="RadBtnOption5">
@@ -2472,7 +2491,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadComboBoxTypeBenefitDisability" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteDisNo" UpdatePanelCssClass="" />
-                    
+                    <telerik:AjaxUpdatedControl ControlID="RadButtonGenerateLetter" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
             </telerik:AjaxSetting> 
             <telerik:AjaxSetting AjaxControlID="RadButtonLoadQuote">   

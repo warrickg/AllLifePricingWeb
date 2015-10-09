@@ -2635,6 +2635,7 @@ namespace AllLifePricingWeb
                                         lblOp5_1.Visible = true;
                                         RadNumericTxtOption5Premium.Visible = true;
                                         RadNumericTxtOption5Premium.Text = foundRows[0]["PremiumLife"].ToString();
+                                        RadNumericTxtPremiumDis.Text = foundRows[0]["PremiumDisability"].ToString();
                                         lblOp5_2.Visible = true;
                                         if (PanelDisability.GroupingText.Contains("Unavailable") == true)
                                         {
@@ -2642,16 +2643,33 @@ namespace AllLifePricingWeb
                                         }
                                         else
                                         {
-                                            lblOp5_2.Text = "rands per month AND";
-                                            RadNumericTxtOption5DisCover.Visible = true;
-                                            RadNumericTxtOption5DisCover.Text = foundRows[0]["CoverDisability"].ToString();
-                                            lblOp5_3.Visible = true;
-                                            RadNumericTxtOption5DisPremium.Visible = true;
-                                            RadNumericTxtOption5DisPremium.Text = foundRows[0]["PremiumDisability"].ToString();
-                                            lblOp5_4.Visible = true;
-                                            RadNumericTxtOption5Total.Visible = true;
-                                            RadNumericTxtOption5Total.Text = foundRows[0]["Total"].ToString();
-                                            lblOp5_5.Visible = true;
+                                            if (RadioButtonQuoteLifeNo.Checked == false)
+                                            {
+                                                lblOp5_2.Text = "rands per month AND";
+                                                RadNumericTxtOption5DisCover.Visible = true;
+                                                RadNumericTxtOption5DisCover.Text = foundRows[0]["CoverDisability"].ToString();
+                                                RadNumericTxtCoverAmnDis.Text = foundRows[0]["CoverDisability"].ToString();
+                                                lblOp5_3.Visible = true;
+                                                RadNumericTxtOption5DisPremium.Visible = true;
+                                                RadNumericTxtOption5DisPremium.Text = foundRows[0]["PremiumDisability"].ToString();                                                
+                                                lblOp5_4.Visible = true;
+                                                RadNumericTxtOption5Total.Visible = true;
+                                                RadNumericTxtOption5Total.Text = foundRows[0]["Total"].ToString();
+                                                lblOp5_5.Visible = true;
+                                            }
+                                            else
+                                            {
+                                                lblOp5_2.Text = "rands per month AND";
+                                                RadNumericTxtOption5DisCover.Visible = true;
+                                                RadNumericTxtOption5DisCover.Text = foundRows[0]["CoverDisability"].ToString();
+                                                lblOp5_3.Visible = true;
+                                                RadNumericTxtOption5DisPremium.Visible = true;
+                                                RadNumericTxtOption5DisPremium.Text = foundRows[0]["PremiumDisability"].ToString();
+                                                lblOp5_4.Visible = true;
+                                                RadNumericTxtOption5Total.Visible = true;
+                                                RadNumericTxtOption5Total.Text = foundRows[0]["Total"].ToString();
+                                                lblOp5_5.Visible = true;
+                                            }
                                         }
 
                                         ProcessOptionButton(5);
@@ -5360,7 +5378,6 @@ namespace AllLifePricingWeb
 
                                     }
                                 }
-
                             }
                         }
                     }
@@ -5371,8 +5388,12 @@ namespace AllLifePricingWeb
                 if (buttonNumber == 4)
                 {
                     #region "If less than 130 for button 4 only"
-                    if ((decPremium + decPremiumDisability) < 130)
-                    {
+                    
+                    strControlFee = decPremiumFixedFee.ToString();
+
+                    if (strControlFee == "")
+                        strControlFee = "1";
+                   
                         #region "Life Only"
                         if (RadioButtonQuoteLifeYes.Checked == true && RadioButtonQuoteDisYes.Checked == false)
                         {
@@ -5516,8 +5537,164 @@ namespace AllLifePricingWeb
 
                         }
                         #endregion
-                    }
-                #endregion
+
+                        #region "Life and Disability"
+                        if ((((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)))) < 130)
+                        {                            
+                            //if ((blnUseLife == true) && (blnUseDisability == true))
+                            //{
+                                decPremium = 75;
+                                decPremiumDisability = 75;
+                            //}                                                            
+
+                            strBaseRisk = GetBaseRisk(1);  //1= life; 2 = Disability
+                            strProductType = GetBenifitCode(1); //1= life; 2 = Disability
+                            //strRiskModifier = GetRiskModifier();
+
+                            if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "ADB")
+                            {
+                                strRiskModifier = "ACCIDENTAL";
+                            }
+
+                            if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "ACDB")
+                            {
+                                strRiskModifier = "ACCIDENTAL_CANCER";
+                            }
+
+                            ReturnDT = null;
+
+                            #region "Life"
+                            if (blnUseLife == true)
+                            {
+
+                                if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB")
+                                {
+                                    ReturnDT = WS.returnEM_Affected_Cover(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk + RadTxtRiskBand.Text.Trim(), strRiskModifier, decPremium.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingLife.Text);
+                                }
+                                else
+                                {
+                                    ReturnDT = WS.returnEM_Affected_Cover(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk, strRiskModifier, decPremium.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingLife.Text);
+                                }
+
+                                foreach (DataRow row in ReturnDT.Rows)
+                                {
+                                    if (row["Cover"].ToString() == "")
+                                    {
+                                        decCover = 0;
+                                    }
+                                    else
+                                    {
+                                        decCover = Convert.ToDecimal(row["UnroudedCover"].ToString());
+                                    }
+                                }
+
+                                //Match closest cover amount in the CoverRounding table
+                                #region "Match closest cover amount in the CoverRounding table"
+                                sqlCommandX2 = new SqlCommand();
+                                sqlCommandX2.Connection = sqlConnectionX;
+                                sqlCommandX2.CommandType = CommandType.StoredProcedure;
+                                sqlCommandX2.CommandText = "spx_SELECT_CoverRounding";
+
+                                sqlParam = new SqlParameter("CoverAmount", decCover);
+                                sqlCommandX2.Parameters.Add(sqlParam);
+
+                                sqlDR2 = sqlCommandX2.ExecuteReader();
+                                while (sqlDR2.Read())
+                                {
+                                    decCover = Convert.ToDecimal(sqlDR2.GetValue(0).ToString());
+                                }
+
+                                sqlDR2.Close();
+                                sqlCommandX2.Cancel();
+                                sqlCommandX2.Dispose();
+                                #endregion
+
+                                if (decCover == 40000)
+                                {
+                                    if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB")
+                                    {
+                                        ReturnDT = WS.returnEM_Affected_Premium(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk + RadTxtRiskBand.Text.Trim(), strRiskModifier, decCover.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingLife.Text);
+                                    }
+                                    else
+                                    {
+                                        ReturnDT = WS.returnEM_Affected_Premium(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk, strRiskModifier, decCover.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingLife.Text);
+                                    }
+
+                                    foreach (DataRow row in ReturnDT.Rows)
+                                    {
+                                        if (row["LoadedPremium"].ToString() != "")
+                                        {
+                                            decPremium = Convert.ToDecimal(row["LoadedPremium"].ToString());
+                                            decPremiumUnrounded = Convert.ToDecimal(row["UnroudedStandardPremium"].ToString());
+                                            decPremiumFixedFee = Convert.ToDecimal(row["FixedFee"].ToString());
+
+                                        }
+                                    }
+
+                                    decPremium = decPremium + decPremiumFixedFee;
+                                }
+                            }
+                            #endregion
+
+                            #region "Disability"
+                            if (RadioButtonQuoteDisNo.Checked == false)
+                            {
+                                //Disability
+                                //Recalculate the disability premium
+                                strBaseRisk = GetBaseRisk(2);  //1= life; 2 = Disability
+                                strProductType = GetBenifitCode(2); //1= life; 2 = Disability
+                                ReturnDT = null;
+                                if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB")
+                                {
+                                    ReturnDT = WS.returnEM_Affected_Cover(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk + RadTxtRiskBand.Text.Trim(), strRiskModifier, decPremiumDisability.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingLife.Text);
+                                }
+                                else
+                                {
+                                    ReturnDT = WS.returnEM_Affected_Cover(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk, strRiskModifier, decPremiumDisability.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingLife.Text);
+                                }
+
+                                foreach (DataRow row in ReturnDT.Rows)
+                                {
+                                    if (row["Cover"].ToString() == "")
+                                    {
+                                        decCoverDisability = 0;
+                                    }
+                                    else
+                                    {
+                                        decCoverDisability = Convert.ToDecimal(row["Cover"].ToString());
+                                    }
+                                }
+
+                                //Match closest cover amount in the CoverRounding table
+                                #region "Match closest cover amount in the CoverRounding table"
+                                sqlCommandX2 = new SqlCommand();
+                                sqlCommandX2.Connection = sqlConnectionX;
+                                sqlCommandX2.CommandType = CommandType.StoredProcedure;
+                                sqlCommandX2.CommandText = "spx_SELECT_CoverRounding";
+
+                                sqlParam = new SqlParameter("CoverAmount", decCoverDisability);
+                                sqlCommandX2.Parameters.Add(sqlParam);
+
+                                sqlDR2 = sqlCommandX2.ExecuteReader();
+                                while (sqlDR2.Read())
+                                {
+                                    decCoverDisability = Convert.ToDecimal(sqlDR2.GetValue(0).ToString());
+                                }
+
+                                sqlDR2.Close();
+                                sqlCommandX2.Cancel();
+                                sqlCommandX2.Dispose();
+                                #endregion
+
+                                //decPremium = decPremium + decPremiumFixedFee;
+
+                                //decPremiumDisability = decPremiumDisability + decPremiumFixedFee;
+                            }
+                            #endregion
+                        }
+                        #endregion
+
+                    #endregion
                 }
 
                 
@@ -6160,6 +6337,8 @@ namespace AllLifePricingWeb
                 {
                     if ((PanelDisability.GroupingText.Contains("Unavailable") == false) || (RadComboBoxTypeBenefitDisability.SelectedItem.Text != "FDB"))
                     {
+                        decimal decTotal = 0;
+
                         switch (buttonNumber)
                         {
                             case 1:
@@ -6173,7 +6352,17 @@ namespace AllLifePricingWeb
                                 if (RadioButtonQuoteLifeNo.Checked == true)
                                 {
                                     lblOp1_4.Text = "rands per month";
-                                    decimal decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                    //decimal decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                    
+                                    if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
+                                    {
+                                        decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                    }
+                                    else
+                                    {
+                                        decTotal = (decPremium + decPremiumDisability);
+                                    }
+
                                     RadNumericTxtOption1Total.Text = decTotal.ToString();
                                     hideOption1Life();
                                     lblOp1_4.Visible = false;
@@ -6192,7 +6381,7 @@ namespace AllLifePricingWeb
                                 #region "Button 2"
                                 if (Convert.ToInt32(RadNumericTxtOption1Total.Text) > 130)
                                 {
-                                    decimal decTotal;
+                                    //decimal decTotal;
                                     decimal decTotalTemp;
 
                                     RadNumericTxtOption2DisCover.Visible = true;
@@ -6204,7 +6393,17 @@ namespace AllLifePricingWeb
                                     if (RadioButtonQuoteLifeNo.Checked == true)
                                     {
                                         lblOp2_4.Text = "rands per month";
-                                        decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        //decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+
+                                        if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
+                                        {
+                                            decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        }
+                                        else
+                                        {
+                                            decTotal = (decPremium + decPremiumDisability);
+                                        }
+
                                         RadNumericTxtOption2Total.Text = decTotal.ToString();
                                         hideOption2Life();
                                         lblOp2_4.Visible = false;
@@ -6251,8 +6450,22 @@ namespace AllLifePricingWeb
                                     if (RadioButtonQuoteLifeNo.Checked == true)
                                     {
                                         lblOp3_4.Text = "rands per month";
-                                        decimal decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
-                                        decimal decTotalTemp = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        //decimal decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        //decimal decTotalTemp = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        decimal decTotalTemp = 0;
+
+                                        if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
+                                        {
+                                            decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                            decTotalTemp = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        }
+                                        else
+                                        {
+                                            decTotal = (decPremium + decPremiumDisability);
+                                            decTotalTemp = (decPremium + decPremiumDisability);
+                                        }
+
+                                        
                                         RadNumericTxtOption3Total.Text = decTotal.ToString();
                                         hideOption3Life();
                                         lblOp3_4.Visible = false;
@@ -6275,6 +6488,12 @@ namespace AllLifePricingWeb
                                         lblOp3_5.Visible = true;
                                     }
                                 }
+                                else
+                                {
+                                    hideOption3Life();
+                                    hideOption3Disability();
+                                    RadNumericTxtOption3Total.Text = "0";
+                                }
                                 #endregion
                                 break;
                             case 4:
@@ -6292,7 +6511,7 @@ namespace AllLifePricingWeb
                                     if (RadioButtonQuoteLifeNo.Checked == true)
                                     {
                                         lblOp4_4.Text = "rands per month";
-                                        decimal decTotal = 0;
+                                        decTotal = 0;
 
                                         if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
                                         {
@@ -6308,7 +6527,8 @@ namespace AllLifePricingWeb
                                     else
                                     {
                                         lblOp4_4.Text = "rands per month. So, that's a total monthly premium of";
-                                        decimal decTotal = ((decPremium)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        //decTotal = ((decPremium)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
                                         RadNumericTxtOption4Total.Text = decTotal.ToString();
 
                                         RadNumericTxtOption4Total.Visible = true;
@@ -6330,11 +6550,30 @@ namespace AllLifePricingWeb
                                 lblOp5_4.Visible = true;
                                 if (RadioButtonQuoteLifeNo.Checked == true)
                                 {
+                                    hideOption5Life();
                                     lblOp5_4.Text = "rands per month";
+                                    decTotal = 0;
+
+                                    if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
+                                    {
+                                        //decTotal = (decPremium - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee))));
+                                        decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                    }
+                                    else
+                                    {
+                                        decTotal = (decPremium + decPremiumDisability);
+                                    }
+
+                                    RadNumericTxtOption5Total.Text = decTotal.ToString();
+                                    RadNumericTxtOption5Total.Visible = false;
+                                    lblOp5_5.Visible = false;
                                 }
                                 else
                                 {
                                     lblOp5_4.Text = "rands per month. So, that's a total monthly premium of";
+                                    decTotal = ((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                    RadNumericTxtOption5Total.Text = decTotal.ToString();
+
                                     RadNumericTxtOption5Total.Visible = true;
                                     lblOp5_5.Visible = true;
                                 }
@@ -6870,6 +7109,8 @@ namespace AllLifePricingWeb
                     ProcessOptionButton(4);
                     SaveQuoteOptionInfo(4);
                     populateSummaryGrid();
+                    RadButtonGenerateLetter.Enabled = true;
+                    lblRequalify.Text = "";
                 }
             }
             catch (Exception ex)
@@ -6924,6 +7165,15 @@ namespace AllLifePricingWeb
                     if (RadNumericTxtPremiumLife.Text.Trim() == "")
                     {
                         RadAjaxManager1.ResponseScripts.Add("radalert('Please enter a value in for the premium for the life section',300,100,'Data required');");
+                        blnContinue = false;
+                    }
+                }
+
+                if ((blnLifeAvailable == false) && (blnDisabilityAvailable == true))
+                {
+                    if (RadNumericTxtPremiumDis.Text.Trim() == "")
+                    {
+                        RadAjaxManager1.ResponseScripts.Add("radalert('Please enter a value in for the premium for the disability section',300,100,'Data required');");
                         blnContinue = false;
                     }
                 }
@@ -7008,6 +7258,8 @@ namespace AllLifePricingWeb
                         ProcessOptionButton(5);
                         SaveQuoteOptionInfo(5);
                         populateSummaryGrid();
+                        RadButtonGenerateLetter.Enabled = true;
+                        lblRequalify.Text = "";
                     }
                 }
             }
