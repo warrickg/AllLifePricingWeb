@@ -4501,7 +4501,6 @@ namespace AllLifePricingWeb
                     }
 
                     decPremium = decPremium + decPremiumFixedFee;
-
                    
                     #region "If less than 130"
                     //if (decPremium < 130)  
@@ -4554,7 +4553,6 @@ namespace AllLifePricingWeb
                     //}
 
                     #endregion
-
 
                     //}
                     //else
@@ -4764,6 +4762,7 @@ namespace AllLifePricingWeb
 
                     if ((blnUseLife == true) && (blnUseDisability == false))
                     {
+                        #region "Life == true | Disability == false"
                         decCover = ((((decIncome * decPI) / 100)) / decCPRateLife);
 
                         if (buttonNumber != 4)
@@ -4826,10 +4825,12 @@ namespace AllLifePricingWeb
                         }
 
                         decPremium = decPremium + decPremiumFixedFee;
+                        #endregion
                     }
 
                     if ((blnUseLife == false) && (blnUseDisability == true))
                     {
+                        #region "Life == false | Disability == true"
                         decCoverDisability = ((((decIncome * decPI) / 100)) / decCPRateDisability);
 
                         if (buttonNumber != 4)
@@ -4884,10 +4885,12 @@ namespace AllLifePricingWeb
                         }
 
                         decPremiumDisability = decPremiumDisability + decPremiumFixedFee;
+                        #endregion
                     }
 
                     if ((blnUseLife == true) && (blnUseDisability == true))
                     {
+                        #region "Life == true | Disability == true"
                         //decCover = ((decPremiumUnrounded + decPremiumDisabilityUnrounded) / (decCPRateLife + decCPRateDisability));
                         decCover = ((((decIncome * decPI) / 100)) / (decCPRateLife + decCPRateDisability));
 
@@ -4916,6 +4919,20 @@ namespace AllLifePricingWeb
                         }
 
                         decCoverDisability = decCover;
+
+                        //Recalculate the life premium
+                        #region "Life"
+                        strRiskModifier = GetRiskModifier();
+
+                        if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "ADB")
+                        {
+                            strRiskModifier = "ACCIDENTAL";
+                        }
+
+                        if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "ACDB")
+                        {
+                            strRiskModifier = "ACCIDENTAL_CANCER";
+                        }
 
                         //Recalculate the life premium
                         strBaseRisk = GetBaseRisk(1);  //1= life; 2 = Disability
@@ -4949,10 +4966,24 @@ namespace AllLifePricingWeb
 
                             }
                         }
+                        #endregion
 
                         decPremium = decPremium + decPremiumFixedFee;
 
                         //Recalculate the disability premium
+                        #region "Disability"
+                        strRiskModifier = GetRiskModifier();
+
+                        if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "ADB")
+                        {
+                            strRiskModifier = "ACCIDENTAL";
+                        }
+
+                        if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "ACDB")
+                        {
+                            strRiskModifier = "ACCIDENTAL_CANCER";
+                        }
+
                         strBaseRisk = GetBaseRisk(2);  //1= life; 2 = Disability
                         strProductType = GetBenifitCode(2); //1= life; 2 = Disability
                         ReturnDT = null;
@@ -4964,7 +4995,7 @@ namespace AllLifePricingWeb
                             strEscalation = "10";
                         //ReturnDT = WS.returnPremium(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk + RadTxtRiskBand.Text.Trim(), strRiskModifier, decCoverDisability.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), "", "");
                         //ReturnDT = WS.returnEM_Affected_Premium(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk + RadTxtRiskBand.Text.Trim(), strRiskModifier, decCoverDisability.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), "", "", RadNumericTxtEMLoadingDisability.Text);
-                        if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "FDB")
+                        if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB")
                         {
                             ReturnDT = WS.returnEM_Affected_Premium(strSubscriberName, strSubscriberPassword, strSubscriberCode, strProduct + strProductType + strEscalation, strBaseRisk + RadTxtRiskBand.Text.Trim(), strRiskModifier, decCoverDisability.ToString(), RadDatePickerQuoteDate.SelectedDate.ToString(), RadTxtMagnumID.Text.Trim(), "", RadNumericTxtEMLoadingDisability.Text);
                         }
@@ -4988,8 +5019,10 @@ namespace AllLifePricingWeb
                                 decPremiumFixedFee = 0;
                             }
                         }
+                        #endregion
 
                         decPremiumDisability = decPremiumDisability + decPremiumFixedFee;
+                        #endregion
                     }
                     #endregion
                 }
@@ -5003,13 +5036,13 @@ namespace AllLifePricingWeb
 
                     if (strControlFee == "")
                         strControlFee = "1";
-
-                    #region "If less than 130" 
+                    
                     //2015-09-19 - The total (decPremium + decPremiumDisability) was commentd out. I am not going back to using the total
                     ///if (decPremium < 130)
                     //if ((decPremium + decPremiumDisability) < 130)
                     if ((((decPremium + decPremiumDisability)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)))) < 130)
                     {
+                        #region "If less than 130"
                         //decPremium = 130; ///Making this 110 - this is the fee of 130 with out the fixed fee
                         if (decPremiumDisability == 0)
                         {
@@ -5399,8 +5432,8 @@ namespace AllLifePricingWeb
                                 }
                             }
                         }
-                    }
-                    #endregion
+                        #endregion
+                    }                    
                 }
                             
                 //If less than 130 for button 4 only
