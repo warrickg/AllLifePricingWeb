@@ -4497,7 +4497,7 @@ namespace AllLifePricingWeb
                             decPremiumUnrounded = Convert.ToDecimal(row["UnroudedStandardPremium"].ToString());
                             decPremiumFixedFee = Convert.ToDecimal(row["FixedFee"].ToString());
                         }
-                      
+
                     }
 
                     decPremium = decPremium + decPremiumFixedFee;
