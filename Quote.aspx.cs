@@ -2635,6 +2635,7 @@ namespace AllLifePricingWeb
                                         lblOp5_1.Visible = true;
                                         RadNumericTxtOption5Premium.Visible = true;
                                         RadNumericTxtOption5Premium.Text = foundRows[0]["PremiumLife"].ToString();
+                                        RadNumericTxtPremiumLife.Text = foundRows[0]["PremiumLife"].ToString(); ;
                                         RadNumericTxtPremiumDis.Text = foundRows[0]["PremiumDisability"].ToString();
                                         lblOp5_2.Visible = true;
                                         if (PanelDisability.GroupingText.Contains("Unavailable") == true)
@@ -5044,12 +5045,13 @@ namespace AllLifePricingWeb
                     {
                         #region "If less than 130"
                         //decPremium = 130; ///Making this 110 - this is the fee of 130 with out the fixed fee
-                        if (decPremiumDisability == 0)
-                        {
-                            decPremium = 130;
-                        }
-                        else
-                        {
+                        //2015-10-13  - commented out the below so that it sets the blnUseLife and\or blnUseDisability
+                        //if (decPremiumDisability == 0)
+                        //{
+                        //    decPremium = 130;
+                        //}
+                        //else
+                        //{
                             //decPremium = 130 - decPremiumDisability + 20;
 
                             if (RadioButtonQuoteLifeNo.Checked == false)
@@ -5085,7 +5087,7 @@ namespace AllLifePricingWeb
                                 decPremium = 0;
                                 decPremiumDisability = 130;
                             }
-                        }
+                        //}
 
                         strBaseRisk = GetBaseRisk(1);  //1= life; 2 = Disability
                         strProductType = GetBenifitCode(1); //1= life; 2 = Disability
@@ -5171,7 +5173,7 @@ namespace AllLifePricingWeb
                                 }
 
                                 decPremium = decPremium + decPremiumFixedFee;
-                            }
+                            }                            
                         }
 
 
@@ -5507,8 +5509,9 @@ namespace AllLifePricingWeb
                                 sqlCommandX2.Cancel();
                                 sqlCommandX2.Dispose();
                                 #endregion
-                               
-                                decPremium = decPremium + decPremiumFixedFee;                                
+
+                                //2015-10-13 - taken out because the premium from option 4 was R150 and not matching premium (130) on option 5 (e.g. MagID 67332124)
+                                //decPremium = decPremium + decPremiumFixedFee;
                             }
                         }
                         #endregion
@@ -6244,18 +6247,20 @@ namespace AllLifePricingWeb
                                 if ((PanelDisability.GroupingText.Contains("Unavailable") == true) && (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "FDB"))
                                 {
                                     lblOp4_2.Text = "rands per month";
-                                    decimal decTotal = 0;
+                                    //2015-10-12 - removed the below because it was making the premium and the total the same value on the quote letter
+                                    //decimal decTotal = 0;
 
-                                    if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
-                                    {
-                                        decTotal = (decPremium - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee))));
-                                    }
-                                    else
-                                    {
-                                        decTotal = (decPremium + decPremiumDisability);
-                                    }
+                                    //if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
+                                    //{
+                                    //    decTotal = (decPremium - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee))));
+                                    //}
+                                    //else
+                                    //{
+                                    //    decTotal = (decPremium + decPremiumDisability);
+                                    //}
 
-                                    RadNumericTxtOption4Total.Text = decTotal.ToString();
+                                    //RadNumericTxtOption4Total.Text = decTotal.ToString();
+                                    RadNumericTxtOption4Total.Text = decPremium.ToString();
                                 }
                                 else
                                 {
@@ -6278,8 +6283,10 @@ namespace AllLifePricingWeb
                                     else
                                     {
                                         lblOp4_2.Text = "rands per month";
-                                        decimal decTotal = ((decPremium)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
-                                        RadNumericTxtOption4Total.Text = decTotal.ToString();
+                                        //2015-10-12 - removed the below because it was making the premium and the total the same value on the quote letter
+                                        //decimal decTotal = ((decPremium)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        //RadNumericTxtOption4Total.Text = decTotal.ToString();
+                                        RadNumericTxtOption4Total.Text = decPremium.ToString();
                                     }
                                 }
 
@@ -6319,17 +6326,18 @@ namespace AllLifePricingWeb
                                 {
                                     lblOp5_2.Text = "rands per month";
                                     decimal decTotal = 0;
+                                    //2015-10-12 - removed the below because it was making the premium and the total the same value on the quote letter
+                                    //if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
+                                    //{
+                                    //    decTotal = (decPremium - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee))));
+                                    //}
+                                    //else
+                                    //{
+                                    //    decTotal = (decPremium + decPremiumDisability);
+                                    //}
 
-                                    if ((RadioButtonQuoteLifeNo.Checked == false && RadioButtonQuoteDisNo.Checked == false))
-                                    {
-                                        decTotal = (decPremium - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee))));
-                                    }
-                                    else
-                                    {
-                                        decTotal = (decPremium + decPremiumDisability);
-                                    }
-
-                                    RadNumericTxtOption5Total.Text = decTotal.ToString();
+                                    //RadNumericTxtOption5Total.Text = decTotal.ToString();
+                                    RadNumericTxtOption5Total.Text = decPremium.ToString();
                                 }
                                 else
                                 {
@@ -6354,8 +6362,10 @@ namespace AllLifePricingWeb
                                     else
                                     {
                                         lblOp5_2.Text = "rands per month";
-                                        decimal decTotal = ((decPremium)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
-                                        RadNumericTxtOption5Total.Text = decTotal.ToString();
+                                        //2015-10-12 - removed the below because it was making the premium and the total the same value on the quote letter
+                                        //decimal decTotal = ((decPremium)) - (Convert.ToDecimal(1 * Convert.ToDecimal(strControlFee)));
+                                        //RadNumericTxtOption5Total.Text = decTotal.ToString();
+                                        RadNumericTxtOption5Total.Text = decPremium.ToString();
                                     }
                                 }
                                 #endregion
@@ -7168,7 +7178,7 @@ namespace AllLifePricingWeb
                     ProcessOptionButton(4);
                     SaveQuoteOptionInfo(4);
                     populateSummaryGrid();
-                    RadButtonGenerateLetter.Enabled = true;
+                    //RadButtonGenerateLetter.Enabled = true;
                     lblRequalify.Text = "";
                 }
             }
@@ -7317,7 +7327,7 @@ namespace AllLifePricingWeb
                         ProcessOptionButton(5);
                         SaveQuoteOptionInfo(5);
                         populateSummaryGrid();
-                        RadButtonGenerateLetter.Enabled = true;
+                        //RadButtonGenerateLetter.Enabled = true;
                         lblRequalify.Text = "";
                     }
                 }

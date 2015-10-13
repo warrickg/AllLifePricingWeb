@@ -1010,6 +1010,9 @@
                                 buttonGenerateLetter.set_enabled(false);
                                 var lblRequalify = document.getElementById("<%=lblRequalify.ClientID%>");
                                 lblRequalify.innerText = "You need to re-qualify after changing any risk modifier fields";
+                                //var lblRequalify2 = document.getElementById("<%=lblRequalify2.ClientID%>");
+                                //lblRequalify2.innerText = "You need to re-qualify after changing any risk modifier fields";
+                                
                                 // console.log("hide pane'");
                                 //$find("<%= RadAjaxManager1.ClientID %>").ajaxRequest("hideQuoteP");
                             }
@@ -1017,6 +1020,8 @@
                             {
                                 var lblRequalify = document.getElementById("<%=lblRequalify.ClientID%>");
                                 lblRequalify.innerText = "";
+                                //var lblRequalify2 = document.getElementById("<%=lblRequalify2.ClientID%>");
+                                //lblRequalify2.innerText = "";
                             }
 
                             //Escalation life
@@ -1701,6 +1706,8 @@
                             buttonGenerateLetter.set_enabled(false);
                             var lblRequalify = document.getElementById("<%=lblRequalify.ClientID%>");
                             lblRequalify.innerText = "You need to re-qualify after changing the quote options";
+                            var lblRequalify2 = document.getElementById("<%=lblRequalify2.ClientID%>");
+                            lblRequalify2.innerText = "You need to re-qualify after changing the quote options";
                         }
 
                         function handleMarriedClick(myRadio) {
@@ -2003,6 +2010,7 @@
                     <telerik:AjaxUpdatedControl ControlID="HiddenFieldRMDiabetesType" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="HiddenFieldRBDOB" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify2" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadTxtRiskBand" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadNumericTxtOption1RandValue" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="lblOp1_1" UpdatePanelCssClass="" />
@@ -2331,6 +2339,7 @@
                     <telerik:AjaxUpdatedControl ControlID="RadNotification1" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadNumericTxtCoverAmnDis" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadNumericTxtPremiumDis" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="RadNumericTxtPremiumLife" UpdatePanelCssClass="" />                    
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="RadBtnOption1">
@@ -2461,7 +2470,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeNo" UpdatePanelCssClass="" />                    
                     <telerik:AjaxUpdatedControl ControlID="RadButtonGenerateLetter" UpdatePanelCssClass="" />
-                    <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />                    
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify2" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting>   
             <telerik:AjaxSetting AjaxControlID="RadBtnOption5">
@@ -2497,7 +2507,8 @@
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeYes" UpdatePanelCssClass="" />
                     <telerik:AjaxUpdatedControl ControlID="RadioButtonQuoteLifeNo" UpdatePanelCssClass="" /> 
                     <telerik:AjaxUpdatedControl ControlID="RadButtonGenerateLetter" UpdatePanelCssClass="" />
-                    <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />                    
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify" UpdatePanelCssClass="" />
+                    <telerik:AjaxUpdatedControl ControlID="lblRequalify2" UpdatePanelCssClass="" />
                 </UpdatedControls>
             </telerik:AjaxSetting> 
             <telerik:AjaxSetting AjaxControlID="RadButtonLoadQuote">   
@@ -4151,6 +4162,11 @@
             <tr>
                 <td width="100%">                                    
                     <table border=0 align=center>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblRequalify2" runat="server" Text="" ForeColor="Red" ></asp:Label>
+                            </td>
+                        </tr>
                         <tr>
                             <td>                                
                                 <telerik:RadButton ID="RadButtonGenerateLetter" runat="server" Text="Generate quote letter" OnClick="RadButtonGenerateLetter_Click"></telerik:RadButton>
