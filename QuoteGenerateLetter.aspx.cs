@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -299,12 +300,26 @@ namespace AllLifePricingWeb
                 {
                     if (dt.Rows[0][36].ToString() != "ok")
                     {
-                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                        if (dt.Rows[0][72].ToString() == "FDB")
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                        }
+                        else
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                        }
                     }
 
                     if (dt.Rows[0][37].ToString() != "ok")
                     {
-                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                        if (dt.Rows[0][73].ToString() == "FDB")
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                        }
+                        else
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                        }
                     }
                 }
 
@@ -535,14 +550,38 @@ namespace AllLifePricingWeb
                 }
                 else
                 {
+                    //2015-10-12 - changed to include if user selects ADB or ACDB then show both life and disability 
+                    //if (dt.Rows[0][36].ToString() != "ok")
+                    //{
+                    //    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                    //}
+
+                    //if (dt.Rows[0][37].ToString() != "ok")
+                    //{
+                    //    report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                    //}
                     if (dt.Rows[0][36].ToString() != "ok")
                     {
-                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                        if (dt.Rows[0][72].ToString() == "FDB")
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterDisabilityOnly"));
+                        }
+                        else
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                        }
                     }
 
                     if (dt.Rows[0][37].ToString() != "ok")
                     {
-                        report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                        if (dt.Rows[0][73].ToString() == "FDB")
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetterLifeOnly"));
+                        }
+                        else
+                        {
+                            report = (Telerik.Reporting.Report)Activator.CreateInstance(System.Reflection.Assembly.Load("Report").GetType("Report.QuoteLetter"));
+                        }
                     }
                 }
 
@@ -558,17 +597,21 @@ namespace AllLifePricingWeb
 
                 string fileName = report.DocumentName + ".PDF";
                 //string path = System.IO.Path.GetTempPath();
-                //string strFolder = "~/files/";                
+                //string strFolder = "~/files/";   
+
+                //string month = dateTime.ToString("MMMM");
+                int intMonth = System.DateTime.Now.Month;
 
                 string path = Server.MapPath("~/files/");
-                path += now.ToString("yyyy");
+                path += now.ToString("yyyy/");
+                path += intMonth.ToString();
 
                 if (!System.IO.Directory.Exists(path))
                 {
                     System.IO.Directory.CreateDirectory(path);
                 }
 
-                string filePath = System.IO.Path.Combine(path, fileName);                
+                string filePath = System.IO.Path.Combine(path, fileName);
 
                 ReportProcessor reportProcessor = new ReportProcessor();
                 Telerik.Reporting.InstanceReportSource instanceReportSource = new Telerik.Reporting.InstanceReportSource();
@@ -602,12 +645,17 @@ namespace AllLifePricingWeb
 
                 HiddenFieldSavedFileName.Value = filePath;
 
+                //Color color = (Color)ColorConverter.ConvertFromString("#00CC00");
+                System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml("#00CC00");
+
+                lblInfo.ForeColor = col;
                 lblInfo.Text = "File saved successfully";
 
                 RadBtnEmail.Visible = true;
             }
             catch (Exception ex)
             {
+                lblInfo.ForeColor = System.Drawing.Color.Red;
                 lblInfo.Text = ex.Message;
             }
         }
