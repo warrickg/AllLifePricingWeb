@@ -601,10 +601,12 @@ namespace AllLifePricingWeb
 
                 //string month = dateTime.ToString("MMMM");
                 int intMonth = System.DateTime.Now.Month;
+                string strMonth = intMonth.ToString();
+                if (intMonth < 10)
+                    strMonth = "0" + intMonth.ToString();
 
                 string path = Server.MapPath("~/files/");
-                path += now.ToString("yyyy/");
-                path += intMonth.ToString();
+                path += now.ToString("yyyy") + "\\" + strMonth;
 
                 if (!System.IO.Directory.Exists(path))
                 {
