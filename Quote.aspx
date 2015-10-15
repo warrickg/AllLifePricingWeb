@@ -116,6 +116,7 @@
                             //***************************************************
                             var DOBDatePicker = $find('<%= RadDatePickerDOB.ClientID %>');                               
                             var valDOB = document.getElementById("<%=lblValDOB.ClientID%>");
+                            var textbox = $find('<%= RadTxtAgeOfNextBirthday.ClientID %>');
                             
                             if (DOBDatePicker.get_textBox().control.get_value() == "")
                             {
@@ -123,6 +124,14 @@
                                 valDOB.innerText = "*";
                             }
                             else {                                
+                                valDOB.innerText = "";
+                            }
+
+                            if (textbox.get_value() == "") {
+                                CheckResult = CheckResult + "Date of next birthday missing,";
+                                valDOB.innerText = "*";
+                            }
+                            else {
                                 valDOB.innerText = "";
                             }
 
@@ -1650,7 +1659,14 @@
 
                             var call = jarh(days);                            
                             //textbox.set_value(eventArgs.get_newValue());
-                            textbox.set_value(call);
+                            if (call > 18) {
+                                textbox.set_value(call);
+                            }
+                            else
+                            {
+                                textbox.set_value();
+                                //console.log("ANB less than 18")
+                            }
 
                             ////RadDatePickerDateOfDiag
                             //var diagnosisDateDatePicker = $find('<%= RadDatePickerDateOfDiag.ClientID %>');
