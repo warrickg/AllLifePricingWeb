@@ -5960,7 +5960,19 @@ namespace AllLifePricingWeb
                                         //}
                                         #endregion
 
-                                        RadNumericTxtOption2Total.Text = decPremium.ToString();
+                                        //dont show option 2 if the total is the same as option 1
+                                        if (decPremium == Convert.ToInt32(RadNumericTxtOption1Total.Text))
+                                        {
+                                            hideOption2Life();
+                                            //hideOption2Disability();
+                                            lblSuitable0.Visible = false;
+                                            lblOr.Visible = false;
+                                            RadNumericTxtOption2Total.Text = "0";
+                                        }
+                                        else
+                                        {
+                                            RadNumericTxtOption2Total.Text = decPremium.ToString();
+                                        }
                                     }
                                     else
                                     {
@@ -6133,7 +6145,17 @@ namespace AllLifePricingWeb
                                         //}
                                         #endregion
 
-                                        RadNumericTxtOption3Total.Text = decPremium.ToString();
+                                        if (decPremium == Convert.ToInt32(RadNumericTxtOption2Total.Text))
+                                        {
+                                            hideOption3Life();
+                                            //hideOption3Disability();
+
+                                            RadNumericTxtOption3Total.Text = "0";
+                                        }
+                                        else
+                                        {
+                                            RadNumericTxtOption3Total.Text = decPremium.ToString();
+                                        }
                                     }
                                     else
                                     {

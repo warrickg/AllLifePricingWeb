@@ -3550,7 +3550,7 @@
                                                 <asp:Label ID="Label28" runat="server" Text="Cover amount:"></asp:Label>
                                             </td>
                                             <td>                                                
-                                                <telerik:RadNumericTextBox ID="RadNumericTxtCoverLife" Runat="server" Type="Currency" NumberFormat-DecimalDigits="2" Culture="en-ZA" onkeyup="OnKeyUpTxtCoverCalcLife()">
+                                                <telerik:RadNumericTextBox ID="RadNumericTxtCoverLife" Runat="server" Type="Currency" NumberFormat-DecimalDigits="2" Culture="en-ZA" onkeyup="OnKeyUpTxtCoverCalcLife()" MinValue="40000">
                                                     <NegativeStyle Resize="None" />
                                                     <NumberFormat ZeroPattern="R n" />
                                                     <EmptyMessageStyle Resize="None" />
@@ -3640,7 +3640,7 @@
                                                 <asp:Label ID="Label33" runat="server" Text="Cover amount:"></asp:Label>
                                             </td>
                                             <td>                                                
-                                                 <telerik:RadNumericTextBox ID="RadNumericTxtCoverAmnDis" Runat="server" Type="Currency" NumberFormat-DecimalDigits="2" Culture="en-ZA" onkeyup="OnKeyUpTxtCoverCalcDis()">
+                                                 <telerik:RadNumericTextBox ID="RadNumericTxtCoverAmnDis" Runat="server" Type="Currency" NumberFormat-DecimalDigits="2" Culture="en-ZA" onkeyup="OnKeyUpTxtCoverCalcDis()" MinValue="40000">
                                                     <NegativeStyle Resize="None" />
                                                     <NumberFormat ZeroPattern="R n" />
                                                     <EmptyMessageStyle Resize="None" />
