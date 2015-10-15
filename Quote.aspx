@@ -1466,7 +1466,7 @@
 
                             if (Weight.length > 0) {                                
                                 //var textBoxOunces = $find('<%= RadNumericTxtOunces.ClientID %>');
-                                console.log('kg: ' + Weight);
+                                //console.log('kg: ' + Weight);
 
                                 var nearExact = Weight / 0.45359237;
                                 //console.log('nearExact: ' + nearExact);
@@ -1527,7 +1527,7 @@
 
                                 if (textWLength > 0)
                                 {
-                                    console.log("textH: " + textH);
+                                    //console.log("textH: " + textH);
                                     if (textH > 0)
                                     {
                                         //alert("yes -" + decW + "-" + decH);
@@ -2684,7 +2684,7 @@
                                 </Columns>
                             </telerik:LayoutRow>
                         </Rows>
-                    </telerik:LayoutRow>                    
+                    </telerik:LayoutRow>
                 </Rows>
             </telerik:LayoutRow>
         </telerik:RadPageLayout>
