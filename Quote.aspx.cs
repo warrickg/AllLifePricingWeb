@@ -4796,6 +4796,18 @@ namespace AllLifePricingWeb
                         //    strEscalation = "06";
                         //if (RadioButtonEscalationDis10.Checked == true)
                         //    strEscalation = "10";
+
+                        //2015-10-19 - WG added the below section because it was missing.
+                        if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "ADB")
+                        {
+                            strRiskModifier = "ACCIDENTAL";
+                        }
+
+                        if (RadComboBoxTypeBenefitLife.SelectedItem.Text == "ACDB")
+                        {
+                            strRiskModifier = "ACCIDENTAL_CANCER";
+                        }
+
                         
                         //if (RadioButtonEscLife6.Checked == true)
                         if (RadioButtonEsc6.Checked == true)
@@ -4861,6 +4873,18 @@ namespace AllLifePricingWeb
                         strBaseRisk = GetBaseRisk(2);  //1= life; 2 = Disability
                         strProductType = GetBenifitCode(2); //1= life; 2 = Disability
                         ReturnDT = null;
+
+                        //2015-10-19 - WG added the below section because it was missing.
+                        if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "ADB")
+                        {
+                            strRiskModifier = "ACCIDENTAL";
+                        }
+
+                        if (RadComboBoxTypeBenefitDisability.SelectedItem.Text == "ACDB")
+                        {
+                            strRiskModifier = "ACCIDENTAL_CANCER";
+                        }
+
                         //if (RadioButtonEscalationDis6.Checked == true)
                         if (RadioButtonEsc6.Checked == true)
                             strEscalation = "06";
